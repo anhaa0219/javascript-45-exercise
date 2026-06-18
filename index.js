@@ -249,7 +249,7 @@ if (
 
 let weigt = 62;
 let heigt = 173;
-d = weigt/(heigt*heigt);
+d = weigt / (heigt * heigt);
 if (d < 18.5) {
   console.log("Underweight");
 } else if (d >= 18.5 && d <= 24.9) {
@@ -264,34 +264,128 @@ if (d < 18.5) {
 // Allow only when withdrawAmount <= balance AND withdrawAmount <= dailyLimit.
 //   allowed -> subtract from balance, log "Success" + new balance;
 //   too much -> "Insufficient funds"; over limit -> "Over daily limit".
+let balance = 500;
+let withdrawAmount = 200;
+const dailyLimit = 300;
+if (withdrawAmount <= balance && withdrawAmount <= dailyLimit) {
+  balance = balance - withdrawAmount;
+  console.log("Success " + balance + "$");
+} else if (withdrawAmount > balance) {
+  console.log("Insufficient funds");
+} else {
+  console.log("Over daily limit");
+}
 
 // ----- 11. Leap year check -----
 // Variable: year. Leap when divisible by 4 AND (not divisible by 100 OR divisible by 400).
 // Use % with && and ||. Log "Leap year" or "Normal year". Test with 2000, 1900, 2024.
-
+let year = 2000;
+if (year % 4 === 0 || (year % 400 !== 0 && year % 100 !== 0)) {
+  console.log("Leap year");
+} else {
+  console.log("Normal year");
+}
 // ----- 12. FizzBuzz (one number) -----
 // Variable: n. divisible by 3 AND 5 -> "FizzBuzz", by 3 only -> "Fizz", by 5 only -> "Buzz",
 // otherwise -> the number itself. Test with 15, 9, 10, 7.
-
+let n1 = 15;
+if (n1 % 3 === 0 && n1 % 5 === 0) {
+  console.log("FizzBuzz");
+} else if (n1 % 3 !== 0 && n1 % 5 === 0) {
+  console.log("Buzz");
+} else if (n1 % 3 === 0 && n1 % 5 !== 0) {
+  console.log("Fizz");
+} else {
+  console.log(n1);
+}
 // ----- 13. Rock paper scissors -----
 // Variables: player1, player2 (strings: "rock", "paper", "scissors").
 // Log "Player 1 wins", "Player 2 wins", or "Tie". rock>scissors, scissors>paper, paper>rock.
+let player1 = "rock";
+let player2 = "paper";
+if (player1 === player2) {
+  console.log("Tie");
+} else if (player1 === "rock" && player2 === "scissors") {
+  console.log("Player 1 wins");
+} else if (player1 === "scissors" && player2 === "rock") {
+  console.log("Player 2 wins");
+} else if (player1 === "scissors" && player2 === "paper") {
+  console.log("Player 1 wins");
+} else if (player1 === "paper" && player2 === "scissors") {
+  console.log("Player 2 wins");
+} else if (player1 === "paper" && player2 === "rock") {
+  console.log("Player 1 wins");
+} else if (player1 === "rock" && player2 === "paper") {
+  console.log("Player 2 wins");
+}
 
 // ----- 14. Triangle type -----
 // Variables: sides a, b, c. First check valid triangle (each side < sum of other two).
 // invalid -> "Not a triangle"; all equal -> "Equilateral"; exactly two equal -> "Isosceles";
 // all different -> "Scalene".
+let side_a = 6;
+let side_b = 12;
+let side_c = 15;
+if (side_a < side_b + side_c) {
+  if ((side_a === side_b) === side_c) {
+    console.log("Equilateral");
+  } else if (side_a === side_b && side_a !== side_c) {
+    console.log("Isosceles");
+  } else if (side_c === side_b && side_b !== side_a) {
+    console.log("Isosceles");
+  } else if (side_a === side_c && side_c !== side_b) {
+    console.log("Isosceles");
+  } else {
+    console.log("Scalene");
+  }
+} else {
+  console.log("invalid");
+}
 
 // ----- 15. 12-hour clock -----
 // Variable: hour (0–23). Convert to 12-hour and log like "3 PM".
 //   0 -> "12 AM", 12 -> "12 PM", 1–11 -> "AM", 13–23 -> subtract 12 and add "PM".
 // Test with 0, 9, 12, 18.
-
+let hour = 24;
+if (hour <= 24) {
+  if (hour < 12 && hour > 0) {
+    console.log(hour + "AM");
+  } else if (hour > 12 && hour < 24) {
+    console.log(hour - 12 + "PM");
+  } else if (hour === 12) {
+    console.log(hour + "PM");
+  } else {
+    console.log("00" + "AM");
+  }
+} else {
+  console.log("Wrong time");
+}
 // ----- 16. Shipping cost -----
 // Variables: weight (kg), isExpress (boolean), isMember (boolean).
 // Base: weight <= 1 -> $5, weight <= 5 -> $10, otherwise -> $20.
 // If isExpress, double base. Then if isMember, take $3 off (never below $0). Log final cost.
-
+let weight1 = 20;
+isExpress = true;
+isMember = false;
+if (weight1 <= 1) {
+  if (isExpress === true) {
+    console.log("$10");
+  } else {
+    console.log("$5");
+  }
+} else if (weight1 > 1 && weight1 <= 5) {
+  if (isExpress === true) {
+    console.log("$20");
+  } else if (isMember === true) {
+    console.log("$7");
+  } else if (isMember === true && isExpress === true) {
+    console.log("$17");
+  } else {
+    console.log("10$");
+  }
+} else {
+  console.log("$20");
+}
 // ----- 17. Progressive tax -----
 // Variable: income. first $10,000 -> 0%, $10,001–$30,000 -> 10% on that portion,
 // above $30,000 -> 20% on that portion. Log total tax. Test with 5000, 20000, 50000.
@@ -322,51 +416,101 @@ if (d < 18.5) {
 // ----- 1. How long is the word? -----
 // word (string). Log word.length. if longer than 5 -> "Long word", else "Short word".
 // Test "sun" and "elephant".
-
+let words = "elephant";
+h = words.length;
+if (h > 5) {
+  console.log("Long word");
+} else {
+  console.log("Short word");
+}
 // ----- 2. Loud and quiet -----
 // name (string). Log it with .toUpperCase() and with .toLowerCase().
-
+let name = "anhaa";
+console.log(name.toUpperCase());
+console.log(name.toLowerCase());
 // ----- 3. First and last letter -----
 // word (string). Log word[0] and word[word.length - 1]. Test "hello" -> h and o.
-
+let name1 = "anhaa1";
+console.log(name1[0] + name1[name1.length - 1]);
 // ----- 4. Cut a piece (slice) -----
 // word = "JavaScript". Log word.slice(0, 4) and word.slice(4).
+let name2 = "JavaScript";
+console.log(name2.slice(0, 4), name2.slice(4));
 
 // ----- 5. Is it an email? -----
 // email (string). if email.includes("@") -> "Looks like an email", else "Not an email".
 // Test "sam@mail.com" and "sam.com".
-
+let email = "anhaadiamond2002@gmail.com";
+if (email.includes("@")) {
+  console.log("Looks like an email");
+} else {
+  console.log("Not an email");
+}
 // ----- 6. Full name builder -----
 // firstName, lastName (strings). Join with a space using + into fullName.
 // Log fullName and fullName.length.
-
+let firstName1 = "Munkhbaatar";
+let lastName2 = "Ankhbayar";
+let fullName1 = firstName1 + lastName2;
+console.log(fullName1 + fullName1.length);
 // ----- 7. Valid username -----
 // username (string). Valid only when length >= 3 AND <= 15.
 // Log "Valid username" or "Invalid username".
-
+let username1 = "anhaa";
+if (username1.length >= 3 && username1.length <= 15) {
+  console.log("Valid username");
+} else {
+  console.log("Invalid username");
+}
 // ----- 8. Same word? (ignore case) -----
 // a, b (strings). if a.toLowerCase() === b.toLowerCase() -> "Match", else "No match".
 // Test "Hello" and "hello".
-
+let a1 = "Hello";
+let b1 = "hello";
+if (a1.toLocaleLowerCase() === b1.toLocaleLowerCase()) {
+  console.log("Match");
+} else {
+  console.log("No match");
+}
 // ----- 9. Clean the spaces (trim) -----
 // raw = "   hi there   ". clean = raw.trim(). Log clean and clean.length. Compare to raw.length.
-
+let raw = "  hi there  ";
+console.log("raw length = " + raw.length);
+let clean = raw.trim();
+console.log(clean + " = " + clean.length);
 // ----- 10. Find a letter (indexOf) -----
 // word (string). word.indexOf("a"). if -1 -> "No letter a", else "Found a at position " + ...
 // Test "banana" and "sky".
-
+let word2 = "banana";
+word3 = word2.indexOf("a");
+if (word3 === -1) {
+  console.log("No letter a");
+} else {
+  console.log("Found a at position" + word3);
+}
 // ----- 11. Phone area code -----
 // phone (10-char string like "5551234567"). Log "Area code: " + phone.slice(0, 3).
 // if phone.length is not exactly 10 -> "Invalid number".
-
+let phone = "97689240319";
+if (phone.length === 11) {
+  console.log("Area code: " + phone.slice(0, 3));
+} else {
+  console.log("Invalid number");
+}
 // ----- 12. Password rule (length + word) -----
 // password (string). "Strong" only when length >= 8 AND NOT contains "password"
 // (!password.toLowerCase().includes("password")). Otherwise "Weak".
-
+let password2 = "!2anhaa123";
+if (password2.length >= 8 && password2.includes("password")) {
+  console.log("Strong");
+} else {
+  console.log("Weak");
+}
 // ----- 13. Initials -----
 // firstName, lastName (strings). first letters uppercase, join with + and dots -> "M.J.".
 // "maria" + "jones" -> "M.J.".
-
+ let firstName2 = "Munkbaatar"
+ let lastName2 = "Ankhbayar"
 // ----- 14. Capitalize a name -----
 // name = "maria". Join name[0].toUpperCase() with name.slice(1) -> "Maria".
 
