@@ -175,8 +175,8 @@ let sumDigitN = 1234;
 let count2 = 0;
 // your code here
 while (sumDigitN > 0) {
-  count2 = count2 + sumDigitN % 10;
-  sumDigitN = Math.floor(sumDigitN/10)
+  count2 = count2 + (sumDigitN % 10);
+  sumDigitN = Math.floor(sumDigitN / 10);
 }
 console.log(count2);
 // TEST 1:  sumDigitN = 1234  ->  10
@@ -189,7 +189,11 @@ console.log(count2);
 let secretNum = 4;
 let guessNum = 1;
 // your code here
-
+while (guessNum !== secretNum) {
+  console.log("Trying number = " + guessNum);
+  guessNum = guessNum + 1;
+}
+console.log("Found it " + secretNum);
 // TEST 1:  secretNum = 4, guessNum = 1  ->  Trying 1 / Trying 2 / Trying 3, then  Found it: 4
 // TEST 2:  secretNum = 2, guessNum = 1  ->  Trying 1, then  Found it: 2
 // TEST 3:  secretNum = 1, guessNum = 1  ->  (no Trying), then  Found it: 1
@@ -201,26 +205,45 @@ let guessNum = 1;
 // ----- 13. Spell it out -----
 // Loop with spellWord[i] and log one letter per line.
 let spellWord = "hello";
+let spellWord1 = " ";
+let spellWord2 = "";
 // your code here
-
+for (let h = 0; h < spellWord.length; h++) {
+  spellWord2 = spellWord[h] + spellWord1;
+}
+console.log(spellWord2);
 // TEST 1:  spellWord = "hello"  ->  h e l l o
 // TEST 2:  spellWord = "hi"     ->  h i
 // TEST 3:  spellWord = "a"      ->  a
 
 // ----- 14. Count a letter -----
 // Count how many times "a" appears in letterWord (if letterWord[i] === "a"). Log the count.
-let letterWord = "banana";
+let letterWord = "anhaa";
+let count3 = 0;
 // your code here
-
+for (let j = 0; j <= letterWord.length; j++) {
+  if (letterWord[j] === "a") {
+    count3 = count3 + 1;
+  } else {
+    count3 = count3 + 0;
+  }
+}
+console.log(count3);
 // TEST 1:  letterWord = "banana"  ->  3
 // TEST 2:  letterWord = "aaa"     ->  3
 // TEST 3:  letterWord = "dog"     ->  0
 
 // ----- 15. Count the vowels -----
 // For each char, if "aeiou".includes(vowelText[i]) add to a counter. Log the count.
-let vowelText = "javascript";
+let vowelText = "aeiou";
+let count4 = 0;
 // your code here
-
+for (let k = 1; k <= vowelText.length; k++) {
+  if ("aeiou".includes(vowelText[k])) {
+    count4 = count4 + 1;
+  }
+}
+console.log(count4);
 // TEST 1:  vowelText = "javascript"  ->  3
 // TEST 2:  vowelText = "aeiou"       ->  5
 // TEST 3:  vowelText = "xyz"         ->  0
@@ -228,8 +251,12 @@ let vowelText = "javascript";
 // ----- 16. Reverse a string -----
 // reversedText = "". Loop and build backwards: reversedText = reverseWord[i] + reversedText. Log it.
 let reverseWord = "code";
+let reversedText = "";
 // your code here
-
+for (let l = 0; l < reverseWord.length; l++) {
+  reversedText = reverseWord[l] + reversedText;
+}
+console.log(reversedText);
 // TEST 1:  reverseWord = "code"  ->  edoc
 // TEST 2:  reverseWord = "abc"   ->  cba
 // TEST 3:  reverseWord = "x"     ->  x
@@ -237,8 +264,16 @@ let reverseWord = "code";
 // ----- 17. Count the words -----
 // wordCount = 1. Each space (wordSentence[i] === " ") -> wordCount++. Log the count.
 let wordSentence = "the cat sat down";
+let wordCount = 0;
 // your code here
-
+for (let m = 0; m <= wordSentence.length; m++) {
+  if (wordSentence[m] === " ") {
+    wordCount = wordCount + 1;
+  } else {
+    wordCount = wordCount + 0;
+  }
+}
+console.log(wordCount);
 // TEST 1:  wordSentence = "the cat sat down"  ->  4
 // TEST 2:  wordSentence = "hello world"       ->  2
 // TEST 3:  wordSentence = "one"               ->  1
@@ -251,8 +286,23 @@ let wordSentence = "the cat sat down";
 // Loop digitText chars. When !isNaN(Number(digitText[i])) -> log "First digit: " + char and break.
 // If none found, log "No digits".
 let digitText = "abc4def";
+let o = 0;
+let digitText1 = "No digits";
+let digitText2 = "First digit : ";
+let digitText3 = false;
 // your code here
-
+for (let o = 1; o <= digitText.length; o++) {
+  if (!isNaN(Number(digitText[o]))) {
+    digitText3 = true;
+    break;
+    console.log(digitText2 + digitText[o]);
+  } else {
+    digitText3 = false;
+  }
+}
+if (digitText3 === false) {
+  console.log(digitText1);
+}
 // TEST 1:  digitText = "abc4def"  ->  First digit: 4
 // TEST 2:  digitText = "a9b2"     ->  First digit: 9
 // TEST 3:  digitText = "abc"      ->  No digits
@@ -260,8 +310,20 @@ let digitText = "abc4def";
 // ----- 19. Is it prime? -----
 // Loop i from 2 to primeN-1. If primeN % i === 0 -> not prime, break. Log "Prime"/"Not prime".
 let primeN = 13;
+let primeN1 = false;
+for (let p = 2; p <= primeN - 1; p++) {
+  if (primeN % p === 0) {
+    primeN1 = false;
+  } else {
+    primeN1 = true;
+  }
+}
+if (primeN1 === false) {
+  console.log("Not Prime");
+} else {
+  console.log("Prime");
+}
 // your code here
-
 // TEST 1:  primeN = 13  ->  Prime
 // TEST 2:  primeN = 15  ->  Not prime
 // TEST 3:  primeN = 2   ->  Prime
@@ -270,8 +332,14 @@ let primeN = 13;
 // Loop row 1..gridRows, inside it loop col 1..gridCols. Log row + " x " + col + " = " + (row * col).
 let gridRows = 3;
 let gridCols = 3;
+count5 = 0;
 // your code here
-
+for (let q = 1; q <= gridRows; q++) {
+  for (let r = 1; r <= gridCols; r++) {
+    count5++;
+    console.log(count5 + " lines " + q + " x " + r + " = " + q * r);
+  }
+}
 // TEST 1:  gridRows = 3, gridCols = 3  ->  9 lines, last is  3 x 3 = 9
 // TEST 2:  gridRows = 2, gridCols = 2  ->  4 lines, last is  2 x 2 = 4
 // TEST 3:  gridRows = 1, gridCols = 3  ->  1 x 1 = 1 / 1 x 2 = 2 / 1 x 3 = 3
@@ -283,26 +351,40 @@ let gridCols = 3;
 // ----- 21. Sum of squares -----
 // Add up 1² + 2² + ... + sqSumMax² (i * i each turn). Log the total.
 let sqSumMax = 3;
+let sumOf = 0;
 // your code here
-
-// TEST 1:  sqSumMax = 3  ->  14    (1 + 4 + 9)
+for (let s = 1; s <= sqSumMax; s++) {
+  sumOf = sumOf + s * s;
+}
+console.log(sumOf);
+// TEST 1:  sqSumMax = 3  ->  14    (1 + 4 + 9) => 1 * 1 => 1 + 2*2 = 4 => 3*3 =9
 // TEST 2:  sqSumMax = 1  ->  1
 // TEST 3:  sqSumMax = 5  ->  55    (1 + 4 + 9 + 16 + 25)
 
 // ----- 22. Sum of odd numbers -----
 // Add every ODD number from 1 to oddSumMax. Log the total.
 let oddSumMax = 10;
+let count6 = 0;
 // your code here
-
+for (let u = 1; u <= oddSumMax; u = u + 2) {
+  count6 = count6 + u;
+}
+console.log(count6);
 // TEST 1:  oddSumMax = 10  ->  25   (1 + 3 + 5 + 7 + 9)
 // TEST 2:  oddSumMax = 5   ->  9    (1 + 3 + 5)
 // TEST 3:  oddSumMax = 1   ->  1
 
 // ----- 23. First five multiples -----
 // Log the first 5 multiples of multBase, one per line (multBase x 1 .. x 5).
-let multBase = 3;
+    let multBase = 3;
+    let count7 = 0;
 // your code here
-
+    for (let  v = 1 ; v <= 5 ; v++ )
+    {
+        
+        count7 = count7 + multBase;
+        console.log(count7);
+    }
 // TEST 1:  multBase = 3   ->  3 6 9 12 15
 // TEST 2:  multBase = 10  ->  10 20 30 40 50
 // TEST 3:  multBase = 1   ->  1 2 3 4 5
@@ -310,9 +392,19 @@ let multBase = 3;
 // ----- 24. Count uppercase letters -----
 // Count how many UPPERCASE letters are in upWord. Log the count.
 // Hint: a letter is uppercase when upWord[i] === upWord[i].toUpperCase() (and it is a letter).
-let upWord = "HeLLo";
+let upWord = "HeLLLo";
+let count8 = 0;
+let count9 = ""
 // your code here
-
+    for (let w = 0 ; w < upWord.length ; w++)
+    {
+        if (upWord[w] === upWord[w].toUpperCase())
+        {
+            count8 = count8 + 1; 
+            count9 = count9 + ", " + upWord[w]
+        }
+    }
+    console.log(upWord + " " + count8 + count9)
 // TEST 1:  upWord = "HeLLo"  ->  3   (H, L, L)
 // TEST 2:  upWord = "abc"    ->  0
 // TEST 3:  upWord = "ABC"    ->  3
@@ -322,8 +414,13 @@ let upWord = "HeLLo";
 // Hint: result = ""; loop repTimes -> result = result + repWord.
 let repWord = "ab";
 let repTimes = 3;
+let result = ""
 // your code here
-
+    for (let x = 1 ; x <= repTimes ; x++ )
+    {
+        result = result + repWord;
+    }
+    console.log(result)
 // TEST 1:  repWord = "ab", repTimes = 3  ->  ababab
 // TEST 2:  repWord = "x",  repTimes = 5  ->  xxxxx
 // TEST 3:  repWord = "hi", repTimes = 1  ->  hi
@@ -332,8 +429,17 @@ let repTimes = 3;
 // Build a new string from dashSentence where every space becomes "-". Log it.
 // Hint: result = ""; if char is " " add "-", else add the char.
 let dashSentence = "a b c";
+let count10 = 0;
 // your code here
-
+    for(let y = 1 ; y < dashSentence.length ; y++)
+    {
+        if (dashSentence[y] === " ")
+        {
+            count10++
+            dashSentence[y] = "-"
+        }
+    }
+    console.log(dashSentence + " " + count10 + "-Space-turned")
 // TEST 1:  dashSentence = "a b c"        ->  a-b-c
 // TEST 2:  dashSentence = "hello world"  ->  hello-world
 // TEST 3:  dashSentence = "one"          ->  one
@@ -341,8 +447,18 @@ let dashSentence = "a b c";
 // ----- 27. Count consonants -----
 // Count the letters in conText that are NOT vowels (not in "aeiou"). Log the count.
 let conText = "hello";
+let count11 = 0;
+let count12 = ""
 // your code here
-
+    for ( let z = 0 ; z < conText.length ; z++)
+    {
+        if ("aeiou".includes(conText[z]) === false)
+        {
+            count11=count11 + 1;
+            count12 = count12 + ", " + conText[z];
+        }
+    }
+    console.log(count11 + " " +count12)
 // TEST 1:  conText = "hello"  ->  3   (h, l, l)
 // TEST 2:  conText = "aeiou"  ->  0
 // TEST 3:  conText = "xyz"    ->  3
@@ -351,7 +467,7 @@ let conText = "hello";
 // Add 1..avgMax, then divide by avgMax to get the average. Log the average.
 let avgMax = 10;
 // your code here
-
+    for( ab = )
 // TEST 1:  avgMax = 10  ->  5.5
 // TEST 2:  avgMax = 5   ->  3
 // TEST 3:  avgMax = 1   ->  1
