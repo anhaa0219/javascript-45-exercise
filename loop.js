@@ -376,15 +376,13 @@ console.log(count6);
 
 // ----- 23. First five multiples -----
 // Log the first 5 multiples of multBase, one per line (multBase x 1 .. x 5).
-    let multBase = 3;
-    let count7 = 0;
+let multBase = 3;
+let count7 = 0;
 // your code here
-    for (let  v = 1 ; v <= 5 ; v++ )
-    {
-        
-        count7 = count7 + multBase;
-        console.log(count7);
-    }
+for (let v = 1; v <= 5; v++) {
+  count7 = count7 + multBase;
+  console.log(count7);
+}
 // TEST 1:  multBase = 3   ->  3 6 9 12 15
 // TEST 2:  multBase = 10  ->  10 20 30 40 50
 // TEST 3:  multBase = 1   ->  1 2 3 4 5
@@ -394,17 +392,15 @@ console.log(count6);
 // Hint: a letter is uppercase when upWord[i] === upWord[i].toUpperCase() (and it is a letter).
 let upWord = "HeLLLo";
 let count8 = 0;
-let count9 = ""
+let count9 = "";
 // your code here
-    for (let w = 0 ; w < upWord.length ; w++)
-    {
-        if (upWord[w] === upWord[w].toUpperCase())
-        {
-            count8 = count8 + 1; 
-            count9 = count9 + ", " + upWord[w]
-        }
-    }
-    console.log(upWord + " " + count8 + count9)
+for (let w = 0; w < upWord.length; w++) {
+  if (upWord[w] === upWord[w].toUpperCase()) {
+    count8 = count8 + 1;
+    count9 = count9 + ", " + upWord[w];
+  }
+}
+console.log(upWord + " " + count8 + count9);
 // TEST 1:  upWord = "HeLLo"  ->  3   (H, L, L)
 // TEST 2:  upWord = "abc"    ->  0
 // TEST 3:  upWord = "ABC"    ->  3
@@ -414,13 +410,12 @@ let count9 = ""
 // Hint: result = ""; loop repTimes -> result = result + repWord.
 let repWord = "ab";
 let repTimes = 3;
-let result = ""
+let result = "";
 // your code here
-    for (let x = 1 ; x <= repTimes ; x++ )
-    {
-        result = result + repWord;
-    }
-    console.log(result)
+for (let x = 1; x <= repTimes; x++) {
+  result = result + repWord;
+}
+console.log(result);
 // TEST 1:  repWord = "ab", repTimes = 3  ->  ababab
 // TEST 2:  repWord = "x",  repTimes = 5  ->  xxxxx
 // TEST 3:  repWord = "hi", repTimes = 1  ->  hi
@@ -431,15 +426,13 @@ let result = ""
 let dashSentence = "a b c";
 let count10 = 0;
 // your code here
-    for(let y = 1 ; y < dashSentence.length ; y++)
-    {
-        if (dashSentence[y] === " ")
-        {
-            count10++
-            dashSentence[y] = "-"
-        }
-    }
-    console.log(dashSentence + " " + count10 + "-Space-turned")
+for (let y = 1; y < dashSentence.length; y++) {
+  if (dashSentence[y] === " ") {
+    count10++;
+    dashSentence[y] = "-";
+  }
+}
+console.log(dashSentence + " " + count10 + "-Space-turned");
 // TEST 1:  dashSentence = "a b c"        ->  a-b-c
 // TEST 2:  dashSentence = "hello world"  ->  hello-world
 // TEST 3:  dashSentence = "one"          ->  one
@@ -448,17 +441,15 @@ let count10 = 0;
 // Count the letters in conText that are NOT vowels (not in "aeiou"). Log the count.
 let conText = "hello";
 let count11 = 0;
-let count12 = ""
+let count12 = "";
 // your code here
-    for ( let z = 0 ; z < conText.length ; z++)
-    {
-        if ("aeiou".includes(conText[z]) === false)
-        {
-            count11=count11 + 1;
-            count12 = count12 + ", " + conText[z];
-        }
-    }
-    console.log(count11 + " " +count12)
+for (let z = 0; z < conText.length; z++) {
+  if ("aeiou".includes(conText[z]) === false) {
+    count11 = count11 + 1;
+    count12 = count12 + ", " + conText[z];
+  }
+}
+console.log(count11 + " " + count12);
 // TEST 1:  conText = "hello"  ->  3   (h, l, l)
 // TEST 2:  conText = "aeiou"  ->  0
 // TEST 3:  conText = "xyz"    ->  3
@@ -466,8 +457,13 @@ let count12 = ""
 // ----- 28. Average of 1 to max -----
 // Add 1..avgMax, then divide by avgMax to get the average. Log the average.
 let avgMax = 10;
+let count14 = 0;
+for (let ad = 1; ad <= avgMax; ad++) {
+  count14 = count14 + ad;
+}
+count14 = count14 / avgMax;
+console.log(count14);
 // your code here
-    for( ab = )
 // TEST 1:  avgMax = 10  ->  5.5
 // TEST 2:  avgMax = 5   ->  3
 // TEST 3:  avgMax = 1   ->  1
@@ -475,9 +471,19 @@ let avgMax = 10;
 // ----- 29. Count even digits -----
 // Count how many digits of evenDigCountN are even. Log the count.
 // Hint: peel digits with % 10 and Math.floor(/10); a digit d is even when d % 2 === 0.
-let evenDigCountN = 2468;
+let evenDigCountN = 1234;
+let count15 = 0;
+let count16 = 0;
 // your code here
-
+while (evenDigCountN > 0) {
+  count15 = 0;
+  count15 = count15 + (evenDigCountN % 10);
+  if (count15 % 2 === 0) {
+    count16 = count16 + 1;
+  }
+  evenDigCountN = Math.floor(evenDigCountN / 10);
+}
+console.log(count16);
 // TEST 1:  evenDigCountN = 2468  ->  4
 // TEST 2:  evenDigCountN = 1357  ->  0
 // TEST 3:  evenDigCountN = 1234  ->  2   (2 and 4)
@@ -486,6 +492,8 @@ let evenDigCountN = 2468;
 // For each row r from 1 to numTriRows, build the string "1 2 ... r" with no spaces
 // (just the digits joined) and log one line per row.
 let numTriRows = 3;
+let count17 = "";
+let count18 = "";
 // your code here
 
 // TEST 1:  numTriRows = 3  ->  1 / 12 / 123
@@ -502,9 +510,16 @@ let numTriRows = 3;
 // ----- E1. Sum of Digits -----
 // Given a non-negative integer sumDigN, add up its digits ONCE and log the total.
 // Hint: while sumDigN > 0 -> add (sumDigN % 10) to a total, then sumDigN = Math.floor(sumDigN / 10).
-let sumDigN = 234;
+let sumDigN = 99;
+let count19 = 0;
+let count20 = 0;
 // your code here
-
+while (sumDigN > 0) {
+  count19 = sumDigN % 10;
+  sumDigN = Math.floor(sumDigN / 10);
+  count20 = count20 + count19;
+}
+console.log(count20);
 // EXAMPLE 1:  Input: sumDigN = 234   Output: 9
 //   Explanation: 2 + 3 + 4 = 9.
 // EXAMPLE 2:  Input: sumDigN = 99    Output: 18
@@ -515,9 +530,15 @@ let sumDigN = 234;
 // ----- E2. Count the Digits -----
 // Given a non-negative integer countDigN, log how many digits it has.
 // Hint: while countDigN > 0 -> count++ and countDigN = Math.floor(countDigN / 10).
-let countDigN = 7384;
+let countDigN = 50;
+let countA = 0;
+let countB = 50;
 // your code here
-
+while (countDigN > 0) {
+  countDigN = Math.floor(countDigN / 10);
+  countA = countA + 1;
+}
+console.log("Input : countDigN = " + countB + "   Output : " + countA)
 // EXAMPLE 1:  Input: countDigN = 7384   Output: 4
 //   Explanation: the digits are 7, 3, 8, 4 — four of them.
 // EXAMPLE 2:  Input: countDigN = 50     Output: 2
@@ -529,8 +550,22 @@ let countDigN = 7384;
 // Compute (product of digits) - (sum of digits) for prodSumN and log it.
 // Hint: product starts at 1, sum starts at 0; peel digits with % 10 and Math.floor(/10).
 let prodSumN = 234;
-// your code here
+let countc = 0;
+let countd = 0;
+let countf = 234;
+let countg = 1;
+let counth = 0;
 
+// your code here
+  while(prodSumN > 0)
+  {
+    countc = prodSumN % 10;
+    prodSumN = Math.floor(prodSumN/10)
+    countd = countd + countc;
+    countg = countg * countc;
+  }
+  counth = countg - countd;
+  console.log("Input : prodSumN = " + countf + "    Output : " + counth )
 // EXAMPLE 1:  Input: prodSumN = 234    Output: 15
 //   Explanation: product 2×3×4 = 24, sum 2+3+4 = 9, 24 - 9 = 15.
 // EXAMPLE 2:  Input: prodSumN = 4421   Output: 21
@@ -543,8 +578,16 @@ let prodSumN = 234;
 // Hint: revResult = 0; while revPosN > 0 -> revResult = revResult * 10 + (revPosN % 10),
 // then revPosN = Math.floor(revPosN / 10).
 let revPosN = 123;
+let counti = 0;
+let countj = 123;
+let countk = 0;
 // your code here
-
+  while(revPosN > 0)
+  {
+    counti = revPosN % 10 * 10 
+    revPosN = Math.floor(revPosN/10)
+  }
+  console.log(" Input :  revPosN = " + countj + "    Output : " +  counti)
 // EXAMPLE 1:  Input: revPosN = 123   Output: 321
 //   Explanation: digits 1-2-3 reversed are 3-2-1.
 // EXAMPLE 2:  Input: revPosN = 120   Output: 21
@@ -685,7 +728,9 @@ let vowelStr = "hello";
 // ----- E15. Palindrome Number  (LeetCode 9) -----
 // Given a non-negative integer palN, log true if it reads the same forwards and backwards.
 // Hint: reverse it (revResult = revResult * 10 + palN % 10 while peeling), then compare to the original.
-let palN = 121;
+let palN = 123;
+let revResult = 0;
+let palN1 = 123;
 // your code here
 
 // EXAMPLE 1:  Input: palN = 121   Output: true
@@ -702,7 +747,14 @@ let palN = 121;
 // ----- Star triangle -----
 // Loop row 1..starRows. Build a line of "*" with an inner loop, then log the line.
 let starRows = 5;
+let count13 = "";
 // your code here
+for (let ab = 1; ab <= starRows; ab++) {
+  count13 = count13 + "*";
+  for (let ac = 1; ac <= starRows; ac++) {
+    console.log(count13);
+  }
+}
 
 // TEST 1:  starRows = 5  ->  *
 //                            **
