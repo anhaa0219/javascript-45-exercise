@@ -122,8 +122,8 @@ console.log(square(0));
 // Write `isEven(n)` that RETURNS true when n is even, false when odd.
 // Hint: n % 2 === 0.
 // your code here
-function isEven(n) {
-  if (n % 2 === 0) {
+function isEven(a, b) {
+  if (a % 2 === 0 && b % 2 == 0) {
     return true;
   } else {
     return false;
@@ -524,13 +524,12 @@ console.log(reverse("x"));
 // Write `quadruple(n)` that RETURNS n times 4 BY CALLING `double` twice.
 // Hint: return double(double(n)).
 // your code here
-    function quadruple(n)
-    {
-        return double(double(n))
-    }
-    console.log(quadruple(3));
-    console.log(quadruple(0));
-    console.log(quadruple(5));
+function quadruple(n) {
+  return double(double(n));
+}
+console.log(quadruple(3));
+console.log(quadruple(0));
+console.log(quadruple(5));
 // console.log(quadruple(3));
 // TEST 1:  quadruple(3)  ->  12
 // TEST 2:  quadruple(0)  ->  0
@@ -540,18 +539,16 @@ console.log(reverse("x"));
 // Write `sumOfSquares(n)` that RETURNS square(1) + square(2) + ... + square(n).
 // Call your `square` from exercise 5 inside the loop.
 // your code here
-    function sumOfSquares(n)
-    {
-        let result = 0
-        for( let i = 1 ; i <= n ; i++)
-        {
-           result = result + square(i)
-        }
-        return result
-    }
-    console.log(sumOfSquares(3))
-    console.log(sumOfSquares(1))
-    console.log(sumOfSquares(5))
+function sumOfSquares(n) {
+  let result = 0;
+  for (let i = 1; i <= n; i++) {
+    result = result + square(i);
+  }
+  return result;
+}
+console.log(sumOfSquares(3));
+console.log(sumOfSquares(1));
+console.log(sumOfSquares(5));
 // console.log(sumOfSquares(3));
 // TEST 1:  sumOfSquares(3)  ->  14    (1 + 4 + 9)
 // TEST 2:  sumOfSquares(1)  ->  1
@@ -561,13 +558,12 @@ console.log(reverse("x"));
 // Write `bothEven(a, b)` that RETURNS true only if a AND b are both even.
 // Call your `isEven` from exercise 6.
 // your code here
-    function bothEven(a,b)
-    {
-        return
-    }
-    console.log(bothEven(4, 8));
-    console.log(bothEven(4, 7));
-    console.log(bothEven(3, 9));
+function bothEven(a, b) {
+  return isEven(a, b);
+}
+console.log(bothEven(4, 8));
+console.log(bothEven(4, 7));
+console.log(bothEven(3, 9));
 // console.log(bothEven(4, 8));
 // TEST 1:  bothEven(4, 8)  ->  true
 // TEST 2:  bothEven(4, 7)  ->  false
@@ -583,6 +579,17 @@ console.log(reverse("x"));
 // Write `sumDigits(n)` that RETURNS the sum of the digits of a non-negative integer.
 // Hint: while n > 0 -> add (n % 10) to a total, then n = Math.floor(n / 10).
 // your code here
+function sumDigits(n) {
+  let result = 0;
+  while (n > 0) {
+    result = result + (n % 10);
+    n = Math.floor(n / 10);
+  }
+  return result;
+}
+console.log(sumDigits(4825));
+console.log(sumDigits(60));
+console.log(sumDigits(7));
 
 // console.log(sumDigits(4825));
 // EXAMPLE 1:  sumDigits(4825)  ->  19     (4 + 8 + 2 + 5)
@@ -594,7 +601,20 @@ console.log(reverse("x"));
 // Hint: result = 1; loop `exp` times -> result = result * base.  (Do NOT use ** or Math.pow.)
 // Note: power(anything, 0) is 1.
 // your code here
-
+function power(base, exp) {
+  let result = 1;
+  if (exp !== 0) {
+    for (let i = 1; i <= exp; i++) {
+      result = result * base;
+    }
+    return result;
+  } else {
+    return 1;
+  }
+}
+console.log(power(2, 5));
+console.log(power(5, 0));
+console.log(power(3, 3));
 // console.log(power(2, 5));
 // EXAMPLE 1:  power(2, 5)  ->  32    (2×2×2×2×2)
 // EXAMPLE 2:  power(5, 0)  ->  1     (anything to the 0 is 1)
@@ -606,7 +626,25 @@ console.log(reverse("x"));
 // tracking BOTH a running max and a running min.
 // Hint: start hi = 0, lo = 9; for each digit d -> if (d > hi) hi = d; if (d < lo) lo = d.
 // your code here
-
+function digitSpread(n) {
+  let hi = 0;
+  let lo = 9;
+  let result = 0;
+  while (n > 0) {
+    result = n % 10;
+    n = Math.floor(n / 10);
+    if (result > hi) {
+      hi = result;
+    }
+    if (result < lo) {
+      lo = result;
+    }
+  }
+  return hi - lo;
+}
+console.log(digitSpread(364));
+console.log(digitSpread(70));
+console.log(digitSpread(5));
 // console.log(digitSpread(364));
 // EXAMPLE 1:  digitSpread(364)  ->  3    (max 6, min 3)
 // EXAMPLE 2:  digitSpread(70)   ->  7    (max 7, min 0)
@@ -616,7 +654,17 @@ console.log(reverse("x"));
 // Write `reverseNumber(n)` that RETURNS a positive integer's digits reversed.
 // Hint: result = 0; while n > 0 -> result = result * 10 + (n % 10), n = Math.floor(n/10).
 // your code here
-
+function reverseNumber(n) {
+  let result = 0;
+  while (n > 0) {
+    result = result * 10 + (n % 10);
+    n = Math.floor(n / 10);
+  }
+  return result;
+}
+console.log(reverseNumber(4071));
+console.log(reverseNumber(90));
+console.log(reverseNumber(6));
 // console.log(reverseNumber(4071));
 // EXAMPLE 1:  reverseNumber(4071)  ->  1704
 // EXAMPLE 2:  reverseNumber(90)    ->  9     (09, leading zero drops)
@@ -627,7 +675,24 @@ console.log(reverse("x"));
 // (so 1, base, base*base, ...), else false. base is >= 2.
 // Hint: while n % base === 0 -> n = n / base; it is a power of base if you end at exactly 1.
 // your code here
-
+function isPowerOf(n, base) 
+{
+  while(n % base === 0)
+  {
+    n = n / base;
+    if ( n === 1 )
+    {
+      return true
+    }
+    else 
+    {
+      return false
+    }
+  }
+}
+console.log(isPowerOf(27, 3));
+console.log(isPowerOf(1, 5));
+console.log(isPowerOf(12, 2));
 // console.log(isPowerOf(27, 3));
 // EXAMPLE 1:  isPowerOf(27, 3)  ->  true    (3×3×3)
 // EXAMPLE 2:  isPowerOf(1, 5)   ->  true    (base^0 = 1)
@@ -638,7 +703,10 @@ console.log(reverse("x"));
 // Same peeling as bit-counting, but instead of counting the 1s you PREPEND each bit.
 // Hint: result = ""; while n > 0 -> result = (n % 2) + result, then n = Math.floor(n / 2).
 // your code here
-
+  function toBinary(n)
+  {
+    
+  }
 // console.log(toBinary(11));
 // EXAMPLE 1:  toBinary(11)  ->  "1011"
 // EXAMPLE 2:  toBinary(8)   ->  "1000"
