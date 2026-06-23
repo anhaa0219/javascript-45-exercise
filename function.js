@@ -49,6 +49,7 @@
 function sayHi() {
   return "sayHi";
 }
+console.log("-----1-----");
 console.log(sayHi());
 console.log(sayHi());
 console.log(typeof sayHi());
@@ -63,6 +64,7 @@ console.log(typeof sayHi());
 function luckyNumber() {
   return 7;
 }
+console.log("-----2-----");
 console.log(luckyNumber());
 console.log(luckyNumber() + 1);
 console.log(luckyNumber() * 2);
@@ -78,6 +80,7 @@ console.log(luckyNumber() * 2);
 function giveFive() {
   return 5;
 }
+console.log("-----3-----");
 console.log(giveFive());
 console.log(giveFive() + giveFive());
 console.log(giveFive() > 3);
@@ -96,6 +99,7 @@ console.log(giveFive() > 3);
 function double(n) {
   return n * 2;
 }
+console.log("-----4-----");
 console.log(double(4));
 console.log(double(0));
 console.log(double(-3));
@@ -110,6 +114,7 @@ console.log(double(-3));
 function square(i) {
   return i * i;
 }
+console.log("-----5-----");
 console.log(square(5));
 console.log(square(1));
 console.log(square(0));
@@ -129,6 +134,7 @@ function isEven(a, b) {
     return false;
   }
 }
+console.log("-----6-----");
 console.log(isEven(10));
 console.log(isEven(7));
 console.log(isEven(0));
@@ -148,6 +154,7 @@ function absValue(n) {
     return n;
   }
 }
+console.log("-----7-----");
 console.log(absValue(-9));
 console.log(absValue(9));
 console.log(absValue(0));
@@ -163,6 +170,7 @@ console.log(absValue(0));
 function lastDigit(n) {
   return (n = n % 10);
 }
+console.log("-----8-----");
 console.log(lastDigit(7384));
 console.log(lastDigit(50));
 console.log(lastDigit(9));
@@ -181,6 +189,7 @@ console.log(lastDigit(9));
 function add(a, b) {
   return a + b;
 }
+console.log("-----9-----");
 console.log(add(3, 4));
 console.log(add(-2, 2));
 console.log(add(10, 100));
@@ -201,6 +210,7 @@ function maxOf(a, b) {
     return "Equal numbers are = " + a;
   }
 }
+console.log("-----10-----");
 console.log(maxOf(8, 3));
 console.log(maxOf(2, 20));
 console.log(maxOf(5, 5));
@@ -220,6 +230,7 @@ function isMultiple(n, factor) {
     return false;
   }
 }
+console.log("-----11-----");
 console.log(isMultiple(15, 3));
 console.log(isMultiple(15, 4));
 console.log(isMultiple(10, 5));
@@ -238,6 +249,7 @@ function passOrFail(score, passMark) {
     return "Fail";
   }
 }
+console.log("-----12-----");
 console.log(passOrFail(76, 60));
 console.log(passOrFail(50, 60));
 console.log(passOrFail(60, 60));
@@ -257,6 +269,7 @@ console.log(passOrFail(60, 60));
 function greet(name = "friend") {
   return "Hello, " + name + "!";
 }
+console.log("-----13-----");
 console.log(greet("Sam"));
 console.log(greet());
 console.log(greet("A"));
@@ -271,6 +284,7 @@ console.log(greet("A"));
 function withTax(price, rate = 0.1) {
   return price + price * rate;
 }
+console.log("-----14-----");
 console.log(withTax(100));
 console.log(withTax(100, 0.2));
 console.log(withTax(0));
@@ -291,6 +305,7 @@ function signOf(n) {
     return "zero";
   }
 }
+console.log("-----15-----");
 console.log(signOf(-4));
 console.log(signOf(4));
 console.log(signOf(0));
@@ -311,6 +326,7 @@ function minOfThree(a, b, c) {
     return c;
   }
 }
+console.log("-----16-----");
 console.log(minOfThree(5, 2, 9));
 console.log(minOfThree(7, 7, 7));
 console.log(minOfThree(3, 1, 1));
@@ -338,6 +354,7 @@ function countUp(n) {
   }
   return result;
 }
+console.log("-----L1-----");
 console.log(countUp(5));
 console.log(countUp(1));
 console.log(countUp(3));
@@ -359,6 +376,7 @@ function countDown(n) {
   }
   return result + "Go!";
 }
+console.log("-----L2-----");
 console.log(countDown(3));
 console.log(countDown(1));
 console.log(countDown(5));
@@ -382,6 +400,7 @@ function sumRange(a, b) {
     return "a too b ees ih baih bolomjgui";
   }
 }
+console.log("-----L3-----");
 console.log(sumRange(3, 6));
 console.log(sumRange(1, 5));
 console.log(sumRange(4, 4));
@@ -401,6 +420,7 @@ function repeatStr(word, times) {
   }
   return result;
 }
+console.log("-----L4-----");
 console.log(repeatStr("ab", 3));
 console.log(repeatStr("x", 5));
 console.log(repeatStr("hi", 1));
@@ -422,6 +442,7 @@ function countMultiples(n, k) {
   }
   return count;
 }
+console.log("-----L5-----");
 console.log(countMultiples(50, 3));
 console.log(countMultiples(10, 5));
 console.log(countMultiples(2, 3));
@@ -445,6 +466,7 @@ function sumTo(n) {
   }
   return result;
 }
+console.log("-----17-----");
 console.log(sumTo(100));
 console.log(sumTo(10));
 console.log(sumTo(1));
@@ -467,6 +489,7 @@ function factorial(n) {
     return result;
   }
 }
+console.log("-----18-----");
 console.log(factorial(5));
 console.log(factorial(3));
 console.log(factorial(0));
@@ -488,6 +511,7 @@ function countVowels(word) {
   }
   return count;
 }
+console.log("-----19-----");
 console.log(countVowels("javascript"));
 console.log(countVowels("aeiou"));
 console.log(countVowels("xyz"));
@@ -507,6 +531,7 @@ function reverse(word) {
   }
   return result;
 }
+console.log("-----20-----");
 console.log(reverse("code"));
 console.log(reverse("abc"));
 console.log(reverse("x"));
@@ -527,6 +552,7 @@ console.log(reverse("x"));
 function quadruple(n) {
   return double(double(n));
 }
+console.log("-----21-----");
 console.log(quadruple(3));
 console.log(quadruple(0));
 console.log(quadruple(5));
@@ -546,6 +572,7 @@ function sumOfSquares(n) {
   }
   return result;
 }
+console.log("-----22-----");
 console.log(sumOfSquares(3));
 console.log(sumOfSquares(1));
 console.log(sumOfSquares(5));
@@ -561,6 +588,7 @@ console.log(sumOfSquares(5));
 function bothEven(a, b) {
   return isEven(a, b);
 }
+console.log("-----23-----");
 console.log(bothEven(4, 8));
 console.log(bothEven(4, 7));
 console.log(bothEven(3, 9));
@@ -587,6 +615,7 @@ function sumDigits(n) {
   }
   return result;
 }
+console.log("-----E1-----");
 console.log(sumDigits(4825));
 console.log(sumDigits(60));
 console.log(sumDigits(7));
@@ -612,6 +641,7 @@ function power(base, exp) {
     return 1;
   }
 }
+console.log("-----E2-----");
 console.log(power(2, 5));
 console.log(power(5, 0));
 console.log(power(3, 3));
@@ -642,6 +672,7 @@ function digitSpread(n) {
   }
   return hi - lo;
 }
+console.log("-----E3-----");
 console.log(digitSpread(364));
 console.log(digitSpread(70));
 console.log(digitSpread(5));
@@ -662,6 +693,7 @@ function reverseNumber(n) {
   }
   return result;
 }
+console.log("-----E4-----");
 console.log(reverseNumber(4071));
 console.log(reverseNumber(90));
 console.log(reverseNumber(6));
@@ -675,21 +707,19 @@ console.log(reverseNumber(6));
 // (so 1, base, base*base, ...), else false. base is >= 2.
 // Hint: while n % base === 0 -> n = n / base; it is a power of base if you end at exactly 1.
 // your code here
-function isPowerOf(n, base) 
-{
-  while(n % base === 0)
-  {
+function isPowerOf(n, base) {
+  let result = true;
+  while (n % base === 0) {
     n = n / base;
-    if ( n === 1 )
-    {
-      return true
-    }
-    else 
-    {
-      return false
+    if (n === 1) {
+      result = true;
+    } else {
+      result = false;
     }
   }
+  return result;
 }
+console.log("-----E5-----");
 console.log(isPowerOf(27, 3));
 console.log(isPowerOf(1, 5));
 console.log(isPowerOf(12, 2));
@@ -703,10 +733,18 @@ console.log(isPowerOf(12, 2));
 // Same peeling as bit-counting, but instead of counting the 1s you PREPEND each bit.
 // Hint: result = ""; while n > 0 -> result = (n % 2) + result, then n = Math.floor(n / 2).
 // your code here
-  function toBinary(n)
-  {
-    
+function toBinary(n) {
+  let result = "";
+  while (n > 0) {
+    result = (n % 2) + result;
+    n = Math.floor(n / 2);
   }
+  return result;
+}
+console.log("-----E6-----");
+console.log(toBinary(11));
+console.log(toBinary(8));
+console.log(toBinary(1));
 // console.log(toBinary(11));
 // EXAMPLE 1:  toBinary(11)  ->  "1011"
 // EXAMPLE 2:  toBinary(8)   ->  "1000"
@@ -716,7 +754,17 @@ console.log(isPowerOf(12, 2));
 // Write `mySqrt(n)` -> the integer part of the square root of a non-negative integer.
 // Hint: loop i = 1 upward while i * i <= n; the answer is the last i that fit.
 // your code here
-
+function mySqrt(n) {
+  let result = 0;
+  for (let i = 1; i * i <= n; i++) {
+    result = i;
+  }
+  return result;
+}
+console.log("-----E7-----");
+console.log(mySqrt(26));
+console.log(mySqrt(49));
+console.log(mySqrt(2));
 // console.log(mySqrt(26));
 // EXAMPLE 1:  mySqrt(26)  ->  5    (5²=25 ≤ 26, 6²=36 > 26)
 // EXAMPLE 2:  mySqrt(49)  ->  7
@@ -726,7 +774,21 @@ console.log(isPowerOf(12, 2));
 // Write `isPerfectSquare(n)` -> true if a positive integer is a perfect square, else false.
 // Hint: loop i = 1 upward; if i*i === n -> true; if i*i > n -> false, stop.
 // your code here
-
+function isPerfectSquare(n) {
+  for (let i = 1; i <= n; i++) {
+    if (i * i === n) {
+      return true;
+      break;
+    } else if (i * i > n) {
+      return false;
+      break;
+    }
+  }
+}
+console.log("-----E8-----");
+console.log(isPerfectSquare(81));
+console.log(isPerfectSquare(50));
+console.log(isPerfectSquare(100));
 // console.log(isPerfectSquare(81));
 // EXAMPLE 1:  isPerfectSquare(81)   ->  true   (9×9)
 // EXAMPLE 2:  isPerfectSquare(50)   ->  false
@@ -737,7 +799,19 @@ console.log(isPowerOf(12, 2));
 // (counting both 1 and n itself), for n >= 1.
 // Hint: count = 0; loop i = 1..n; if (n % i === 0) count++.
 // your code here
-
+function countDivisors(n) {
+  let count = 0;
+  for (let i = 1; i <= n; i++) {
+    if (n % i == 0) {
+      count = count + 1;
+    }
+  }
+  return count;
+}
+console.log("-----E9-----");
+console.log(countDivisors(12));
+console.log(countDivisors(7));
+console.log(countDivisors(1));
 // console.log(countDivisors(12));
 // EXAMPLE 1:  countDivisors(12)  ->  6    (1, 2, 3, 4, 6, 12)
 // EXAMPLE 2:  countDivisors(7)   ->  2    (1, 7 — a prime has exactly 2)
@@ -747,7 +821,27 @@ console.log(isPowerOf(12, 2));
 // Write `collatzSteps(n)` -> how many steps a positive integer takes to reach 1.
 // Each step: even -> n / 2, odd -> 3 * n + 1. Count steps until n is exactly 1.
 // your code here
-
+function collatzSteps(n) {
+  let count = 0;
+  if (n === 1) {
+    return 0;
+  } else {
+    while (n > 1) {
+      if (n % 2 === 0) {
+        n = n / 2;
+        count++;
+      } else {
+        n = n * 3 + 1;
+        count++;
+      }
+    }
+    return count;
+  }
+}
+console.log("-----E10-----");
+console.log(collatzSteps(6));
+console.log(collatzSteps(1));
+console.log(collatzSteps(7));
 // console.log(collatzSteps(6));
 // EXAMPLE 1:  collatzSteps(6)  ->  8    (6→3→10→5→16→8→4→2→1)
 // EXAMPLE 2:  collatzSteps(1)  ->  0    (already 1, no steps)
@@ -757,7 +851,21 @@ console.log(isPowerOf(12, 2));
 // Write `fizzAt(i)` that RETURNS, for a single number i:
 //   "FizzBuzz" if divisible by 3 and 5, "Fizz" if by 3, "Buzz" if by 5, else String(i).
 // your code here
-
+function fizzAt(i) {
+  if (i % 3 === 0 && i % 5 === 0) {
+    return "FizzBuzz";
+  } else if (i % 3 === 0 && i % 5 !== 0) {
+    return "Fizz";
+  } else if (i % 3 !== 0 && i % 5 === 0) {
+    return "Buzz";
+  } else {
+    return String(i);
+  }
+}
+console.log("-----E11-----");
+console.log(fizzAt(15));
+console.log(fizzAt(9));
+console.log(fizzAt(7));
 // console.log(fizzAt(15));
 // EXAMPLE 1:  fizzAt(15)  ->  "FizzBuzz"
 // EXAMPLE 2:  fizzAt(9)   ->  "Fizz"
@@ -768,6 +876,19 @@ console.log(isPowerOf(12, 2));
 // Write `isHarshad(n)` and CALL sumDigits(n) from E1 — do NOT re-sum the digits here.
 // Hint: return n % sumDigits(n) === 0;
 // your code here
+function isHarshad(n) {
+  let result = 0;
+  if (n % sumDigits(n) === 0) {
+    result = true;
+  } else {
+    result = false;
+  }
+  return result;
+}
+console.log("-----E12-----");
+console.log(isHarshad(18));
+console.log(isHarshad(11));
+console.log(isHarshad(21));
 
 // console.log(isHarshad(18));
 // EXAMPLE 1:  isHarshad(18)  ->  true    (1+8=9, and 18 % 9 === 0)
@@ -779,6 +900,13 @@ console.log(isPowerOf(12, 2));
 // Do NOT re-derive the reverse here — CALL reverseNumber(n) from E4 and compare to n.
 // Hint: return reverseNumber(n) === n;
 // your code here
+function isPalindrome(n) {
+  return reverseNumber(n) === n;
+}
+console.log("-----E13-----");
+console.log(isPalindrome(1331));
+console.log(isPalindrome(1234));
+console.log(isPalindrome(8));
 
 // console.log(isPalindrome(1331));
 // EXAMPLE 1:  isPalindrome(1331)  ->  true
@@ -790,6 +918,27 @@ console.log(isPowerOf(12, 2));
 // Hint (easy way): loop i from 1 up to the smaller of a and b; whenever i divides
 //   both a and b, remember it; the LAST such i is the answer.
 // your code here
+function gcd(a, b) {
+  let c = 0;
+  let d = 0;
+  if (a > b) {
+    c = b;
+  } else if (b > a) {
+    c = a;
+  } else {
+    c = a;
+  }
+  for (i = 1; i <= c; i++) {
+    if (a % i === 0 && b % i === 0) {
+      d = i;
+    }
+  }
+  return d;
+}
+console.log("-----E14-----");
+console.log(gcd(12, 8));
+console.log(gcd(7, 5));
+console.log(gcd(9, 9));
 
 // console.log(gcd(12, 8));
 // EXAMPLE 1:  gcd(12, 8)   ->  4    (1,2,4 divide both; 4 is biggest)
@@ -801,7 +950,17 @@ console.log(isPowerOf(12, 2));
 // Write `digitalRoot(n)` and CALL `sumDigits(n)` (from E1) inside a loop.
 // Hint: while n has more than one digit (n >= 10) -> n = sumDigits(n); return n.
 // your code here
+function digitalRoot(n) {
+  while (n >= 10) {
+    n = sumDigits(n);
+  }
+  return n;
+}
 
+console.log("-----E15-----");
+console.log(digitalRoot(942));
+console.log(digitalRoot(38));
+console.log(digitalRoot(5));
 // console.log(digitalRoot(942));
 // EXAMPLE 1:  digitalRoot(942)  ->  6    (9+4+2=15, then 1+5=6)
 // EXAMPLE 2:  digitalRoot(38)   ->  2    (3+8=11, then 1+1=2)
