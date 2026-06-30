@@ -354,19 +354,18 @@ console.log(sumValues({}));
 // Hint: start `best` from -Infinity, then compare each value.
 // your code here
 function maxValue(obj) {
-  let a = 0;
-  for (let k in obj) {
-    if (obj[k] > -Infinity) {
-      obj[k] = obj[k];
+  let best = -Infinity;
+  for (const key in obj) {
+    if (obj[key] > best) {
+      best = obj[key];
     }
   }
-  return obj;
+  return best;
 }
-
-console.log("-------14-------");
+console.log("-------15-------");
 console.log(maxValue({ a: 5, b: 9, c: 2 }));
-console.log(maxValue({ a: 5, b: 9, c: 2 }));
-console.log(maxValue({ a: 5, b: 9, c: 2 }));
+console.log(maxValue({ x: 7 }));
+console.log(maxValue({ a: -3, b: -1 }));
 // console.log(maxValue({ a: 5, b: 9, c: 2 }));
 // TEST 1:  maxValue({ a: 5, b: 9, c: 2 })     ->  9
 // TEST 2:  maxValue({ x: 7 })                 ->  7
@@ -376,8 +375,21 @@ console.log(maxValue({ a: 5, b: 9, c: 2 }));
 // Write `keyOfMax(obj)` that RETURNS the KEY whose value is largest (first one if tied).
 // Hint: track both bestKey and bestVal as you loop.
 // your code here
-function keyOfMax(obj) {}
-// console.log(keyOfMax({ math: 80, art: 95, gym: 88 }));
+function keyOfMax(obj) {
+  let bestKey;
+  let bestVal;
+  for (const key in obj) {
+    if (bestKey === undefined || obj[key] > bestVal) {
+      bestKey = key;
+      bestVal = obj[key];
+    }
+  }
+  return bestKey;
+}
+console.log("-------16-------");
+console.log(keyOfMax({ math: 80, art: 95, gym: 88 }));
+console.log(keyOfMax({ a: 5, b: 9, c: 2 }));
+console.log(keyOfMax({ only: 1 }));
 // TEST 1:  keyOfMax({ math: 80, art: 95, gym: 88 })  ->  "art"
 // TEST 2:  keyOfMax({ a: 5, b: 9, c: 2 })            ->  "b"
 // TEST 3:  keyOfMax({ only: 1 })                     ->  "only"
@@ -395,6 +407,7 @@ function averageValue(obj) {
   }
   return total / length;
 }
+console.log("-------17-------");
 console.log(averageValue({ a: 2, b: 4, c: 6 }));
 console.log(averageValue({ x: 10 }));
 console.log(averageValue({ a: 1, b: 2 }));
@@ -415,6 +428,7 @@ function doubleValues(obj) {
   }
   return out;
 }
+console.log("-------18-------");
 console.log(doubleValues({ a: 1, b: 2 }));
 console.log(doubleValues({ x: 0 }));
 console.log(doubleValues({}));
@@ -427,19 +441,17 @@ console.log(doubleValues({}));
 // Write `toPairs(obj)` that RETURNS "key=value" for each pair, joined by ", ".
 // Hint: build a string; add ", " before every pair except the first.
 // your code here
-  function toPairs(obj)
-  {
-    let a = ""
-    for ( let k in obj )
-    { 
-      a = a + k+"="+ obj[k]+", "
-    }
-    return a;
+function toPairs(obj) {
+  let a = "";
+  for (let k in obj) {
+    a = a + k + "=" + obj[k] + ", ";
   }
-  
-  console.log(toPairs({ a: 1, b: 2}));
-  console.log(toPairs({ x : 5 }));
-  console.log(toPairs({ }));
+  return a;
+}
+console.log("-------19-------");
+console.log(toPairs({ a: 1, b: 2 }));
+console.log(toPairs({ x: 5 }));
+console.log(toPairs({}));
 
 // console.log(toPairs({ a: 1, b: 2 }));
 // TEST 1:  toPairs({ a: 1, b: 2 })  ->  "a=1, b=2"
@@ -457,8 +469,20 @@ console.log(doubleValues({}));
 // times it appears. Hint: counts = {}; for each char, if missing start at 0, then +1.
 //   if (counts[ch] === undefined) counts[ch] = 0;  counts[ch]++;
 // your code here
-
-// console.log(letterCount("hello"));
+function letterCount(word) {
+  let counts = {};
+  for (let ch of word) {
+    if (counts[ch] === undefined) {
+      counts[ch] = 0;
+    }
+    counts[ch]++;
+  }
+  return counts;
+}
+console.log("-------20-------");
+console.log(letterCount("hello"));
+console.log(letterCount("aaa"));
+console.log(letterCount(""));
 // TEST 1:  letterCount("hello")  ->  { h: 1, e: 1, l: 2, o: 1 }
 // TEST 2:  letterCount("aaa")    ->  { a: 3 }
 // TEST 3:  letterCount("")       ->  {}     (empty word, empty object)
@@ -467,8 +491,18 @@ console.log(doubleValues({}));
 // Write `wordLengths(sentence)` that RETURNS an object mapping each word to its length.
 // Hint: sentence.split(" ") gives the words; loop them, set obj[word] = word.length.
 // your code here
-
-// console.log(wordLengths("the cat sat"));
+function wordLengths(sentence) {
+  let obj = {};
+  let words = sentence.split(" ");
+  for (let word of words) {
+    obj[word] = word.length;
+  }
+  return obj;
+}
+console.log("-------21-------");
+console.log(wordLengths("the cat sat"));
+console.log(wordLengths("hi there"));
+console.log(wordLengths("one"));
 // TEST 1:  wordLengths("the cat sat")  ->  { the: 3, cat: 3, sat: 3 }
 // TEST 2:  wordLengths("hi there")     ->  { hi: 2, there: 5 }
 // TEST 3:  wordLengths("one")          ->  { one: 3 }
@@ -478,8 +512,17 @@ console.log(doubleValues({}));
 // each key becomes its value. Assume values are unique strings/numbers.
 // Hint: out = {}; for (const k in obj) out[obj[k]] = k.
 // your code here
-
-// console.log(invert({ a: "x", b: "y" }));
+function invert(obj) {
+  let out = {};
+  for (let key in obj) {
+    out[obj[key]] = key;
+  }
+  return out;
+}
+console.log("-------22-------");
+console.log(invert({ a: "x", b: "y" }));
+console.log(invert({ one: 1 }));
+console.log(invert({}));
 // TEST 1:  invert({ a: "x", b: "y" })   ->  { x: "a", y: "b" }
 // TEST 2:  invert({ one: 1 })           ->  { "1": "one" }   (number value becomes a key)
 // TEST 3:  invert({})                   ->  {}
@@ -492,7 +535,14 @@ console.log(doubleValues({}));
 // Write `copyObject(obj)` that RETURNS a NEW object with the same keys and values.
 // Changing the copy must NOT change the original. Hint: { ...obj }.
 // your code here
-
+function copyObject(obj) {
+  return { ...obj };
+}
+console.log("-------23-------");
+console.log(copyObject({ a: 1, b: 2 }).a);
+let o = { a: 1 };
+console.log(copyObject(o) === o);
+console.log(copyObject({}));
 // console.log(copyObject({ a: 1, b: 2 }));
 // TEST 1:  copyObject({ a: 1, b: 2 }).a   ->  1
 // TEST 2:  const o = { a: 1 }; copyObject(o) === o   ->  false   (a NEW object, not the same one)
@@ -503,7 +553,17 @@ console.log(doubleValues({}));
 // the original untouched. (Contrast removeField in ex 6, which mutates.)
 // Hint: copyObject first, then delete the key from the copy.
 // your code here
-
+function omitField(obj, key) {
+  let copy = copyObject(obj);
+  delete copy[key];
+  return copy;
+}
+console.log("-------24-------");
+console.log(omitField({ a: 1, b: 2 }, "a"));
+let o1 = { a: 1, b: 2 };
+omitField(o1, "a");
+console.log("a" in o1);
+console.log(omitField({ a: 1 }, "a"));
 // console.log(omitField({ a: 1, b: 2 }, "a"));
 // TEST 1:  omitField({ a: 1, b: 2 }, "a")                  ->  { b: 2 }
 // TEST 2:  const o = { a: 1, b: 2 }; omitField(o, "a"); "a" in o   ->  true   (original kept)
@@ -521,8 +581,25 @@ console.log(doubleValues({}));
 // If none, RETURN "". Hint: count every char into an object, then walk the word again
 // and return the first char whose count is 1.
 // your code here
-
-// console.log(firstUniqueChar("leetcode"));
+function firstUniqueChar(word) {
+  let counts = {};
+  for (let k of word) {
+    if (counts[k] === undefined) {
+      counts[k] = 0;
+    }
+    counts[k]++;
+  }
+  for (let k of word) {
+    if (counts[k] === 1) {
+      return k;
+    }
+  }
+  return "";
+}
+console.log("-------25-------");
+console.log(firstUniqueChar("leetcode"));
+console.log(firstUniqueChar("swiss"));
+console.log(firstUniqueChar("aabb"));
 // EXAMPLE 1:  firstUniqueChar("leetcode")  ->  "l"
 // EXAMPLE 2:  firstUniqueChar("swiss")     ->  "w"
 // EXAMPLE 3:  firstUniqueChar("aabb")      ->  ""    (every char repeats)
@@ -532,8 +609,29 @@ console.log(doubleValues({}));
 // counts). Hint: if lengths differ -> false; count a into an object; walk b subtracting;
 // any count going negative or a missing key -> false.
 // your code here
-
-// console.log(areAnagrams("listen", "silent"));
+function areAnagrams(a, b) {
+  if (a.length !== b.length) {
+    return false;
+  }
+  const counts = {};
+  for (const ch of a) {
+    if (counts[ch] === undefined) {
+      counts[ch] = 0;
+    }
+    counts[ch]++;
+  }
+  for (const ch of b) {
+    if (counts[ch] === undefined || counts[ch] === 0) {
+      return false;
+    }
+    counts[ch]--;
+  }
+  return true;
+}
+console.log("-------26-------");
+console.log(areAnagrams("listen", "silent"));
+console.log(areAnagrams("hello", "world"));
+console.log(areAnagrams("a", "aa"));
 // EXAMPLE 1:  areAnagrams("listen", "silent")  ->  true
 // EXAMPLE 2:  areAnagrams("hello", "world")    ->  false
 // EXAMPLE 3:  areAnagrams("a", "aa")           ->  false   (different lengths)
@@ -543,8 +641,27 @@ console.log(doubleValues({}));
 // palindrome. Rule: at most ONE letter may have an odd count. Hint: build counts,
 // then count how many counts are odd; ok if that total is 0 or 1.
 // your code here
+function canFormPalindrome(word) {
+  const counts = {};
+  for (const ch of word) {
+    if (counts[ch] === undefined) {
+      counts[ch] = 0;
+    }
+    counts[ch]++;
+  }
+  let oddCount = 0;
 
-// console.log(canFormPalindrome("aabb"));
+  for (const ch in counts) {
+    if (counts[ch] % 2 !== 0) {
+      oddCount++;
+    }
+  }
+  return oddCount <= 1;
+}
+console.log("-------27-------");
+console.log(canFormPalindrome("aabb"));
+console.log(canFormPalindrome("abc"));
+console.log(canFormPalindrome("racecar"));
 // EXAMPLE 1:  canFormPalindrome("aabb")     ->  true    (aabb -> "abba")
 // EXAMPLE 2:  canFormPalindrome("abc")      ->  false   (three odd counts)
 // EXAMPLE 3:  canFormPalindrome("racecar")  ->  true    (only e is odd)
@@ -554,8 +671,21 @@ console.log(doubleValues({}));
 // BOTH, keep the LARGER value. Hint: copy a, then for each key in b use Math.max if the
 // key already exists, else just take b's value.
 // your code here
-
-// console.log(mergeMax({ a: 1, b: 5 }, { a: 3, b: 2, c: 9 }));
+function mergeMax(a, b) {
+  const out = copyObject(a);
+  for (const key in b) {
+    if (out[key] !== undefined) {
+      out[key] = Math.max(out[key], b[key]);
+    } else {
+      out[key] = b[key];
+    }
+  }
+  return out;
+}
+console.log("-------28-------");
+console.log(mergeMax({ a: 1, b: 5 }, { a: 3, b: 2, c: 9 }));
+console.log(mergeMax({}, { x: 1 }));
+console.log(mergeMax({ k: 4 }, { k: 2 }));
 // EXAMPLE 1:  mergeMax({ a: 1, b: 5 }, { a: 3, b: 2, c: 9 })  ->  { a: 3, b: 5, c: 9 }
 // EXAMPLE 2:  mergeMax({}, { x: 1 })                          ->  { x: 1 }
 // EXAMPLE 3:  mergeMax({ k: 4 }, { k: 2 })                    ->  { k: 4 }
@@ -596,7 +726,19 @@ const SCHOOL = {
 // RETURN the mean of the values. Everything in the next exercise calls this.
 // Hint: total + count in one for...in loop, then total / count (like ex 17).
 // your code here
-
+function studentAverage(scores) {
+  let total = 0;
+  let count = 0;
+  for (let k in scores) {
+    total = total + scores[k];
+    count = count + 1;
+  }
+  return total / count;
+}
+console.log("-------29-------");
+console.log(studentAverage({ math: 90, english: 80, science: 70 }));
+console.log(studentAverage({ math: 60, english: 60, science: 60 }));
+console.log(studentAverage({ a: 1, b: 2 }));
 // console.log(studentAverage({ math: 90, english: 80, science: 70 }));
 // TEST 1:  studentAverage({ math: 90, english: 80, science: 70 })  ->  80
 // TEST 2:  studentAverage({ math: 60, english: 60, science: 60 })  ->  60
@@ -607,8 +749,25 @@ const SCHOOL = {
 // in that class. Loop the students with for...in, CALL studentAverage on each one's
 // scores, total them, divide by the count. This is the COMPOSE finale.
 // your code here
-
-// console.log(classAverage(SCHOOL, "jss1"));
+function classAverage(school, classId) {
+  let students = school.classes[classId].students;
+  let total = 0;
+  let count = 0;
+  for (let student in students) {
+    total += studentAverage(students[student].a);
+    count++;
+  }
+  return total / count;
+}
+console.log("-------30-------");
+console.log(classAverage(school, "jss1"));
+console.log(classAverage(school, "jss2"));
+console.log(
+  classAverage(
+    { classes: { x: { students: { p: { a: 10 }, q: { a: 20 } } } } },
+    "x",
+  ),
+);
 // TEST 1:  classAverage(SCHOOL, "jss1")  ->  65    (80 + 50, / 2)
 // TEST 2:  classAverage(SCHOOL, "jss2")  ->  75    (90 + 60, / 2)
 // TEST 3:  classAverage({ classes: { x: { students: { p: { a: 10 }, q: { a: 20 } } } } }, "x")  ->  15
