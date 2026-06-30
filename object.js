@@ -10,7 +10,9 @@
        user.name        // "Sam"   (dot access — key you know)
        user["age"]      // 20      (bracket — key in a variable)
 
-   This file is the objects twin of lesson-7-functions-tests-easy.js.
+   30 exercises, easy -> hard. 1–24 build the core skills one at a
+   time. 25–30 are the CHALLENGE block: LeetCode-style counting and
+   a nested mini-project that makes you COMPOSE earlier ideas.
 
    How to use:
    - Read the exercise, write your function where you see
@@ -35,13 +37,18 @@
      for (const k in obj) {}   visit every key
      Object.keys(obj)          the keys, e.g. ["name","age"]
      Object.values(obj)        the values
+     { ...a, ...b }            spread: copy/merge objects
      .split(" ")               cut a sentence into words
    Plus everything from before: loops, if, %, String()/Number(),
-   Math.floor, function, return.
+   Math.floor, Math.max/Math.min, function, return.
 
    THE OBJECT RULE: a key is a LABEL, a value is what sits behind it.
    Reading a missing key gives `undefined` (not an error) — check
    with `in` before you trust a value.
+
+   MUTATE vs COPY: setAge/addField/removeField CHANGE the object you
+   pass in. copyObject/omitField/doubleValues hand back a NEW object
+   and leave the original alone. Know which kind you are writing.
 
    NOTE: every exercise uses a DIFFERENT function name, so all your
    answers live in this one file with no clashes.
@@ -54,14 +61,16 @@
 // ----- 1. Build an object -----
 // Write `makeUser()` that takes NO input and RETURNS the object { name: "Sam", age: 20 }.
 // your code here
-    function makeUser()
-    {
-        return { name : "Sam" , age : 20}
-    }
-    console.log("----------1----------")
-    console.log(makeUser().name);
-    console.log(makeUser().age);
-    console.log(typeof makeUser());
+function makeUser(obj) {
+  return {
+    name: "Sam",
+    age: 20,
+  };
+}
+console.log("-------1-------");
+console.log(makeUser().name);
+console.log(makeUser().age);
+console.log(typeof makeUser());
 // console.log(makeUser());
 // TEST 1:  makeUser().name      ->  "Sam"
 // TEST 2:  makeUser().age       ->  20
@@ -70,7 +79,16 @@
 // ----- 2. Read with a dot -----
 // Write `getName(user)` that RETURNS the `name` property of the object passed in.
 // your code here
-
+function getName(user) {
+  return {
+    name: "Ada",
+    age: 30,
+  };
+}
+console.log("-------2-------");
+console.log(getName().name);
+console.log((getName().name = "Bo"));
+console.log((getName().name = ""));
 // console.log(getName({ name: "Ada", age: 30 }));
 // TEST 1:  getName({ name: "Ada", age: 30 })  ->  "Ada"
 // TEST 2:  getName({ name: "Bo" })            ->  "Bo"
@@ -80,7 +98,19 @@
 // Write `getValue(obj, key)` that RETURNS the value behind `key`. The key is in a
 // variable, so you MUST use bracket access obj[key] (dot would look for "key" literally).
 // your code here
+function getValue(obj, key) {
+  return {
+    a: 1,
+    b: 2,
+    color: "red",
+    missing: undefined,
+  };
+}
 
+console.log("-------3-------");
+console.log(getValue().b);
+console.log(getValue().color);
+console.log(getValue().missing);
 // console.log(getValue({ a: 1, b: 2 }, "b"));
 // TEST 1:  getValue({ a: 1, b: 2 }, "b")        ->  2
 // TEST 2:  getValue({ color: "red" }, "color")  ->  "red"
@@ -93,7 +123,16 @@
 // ----- 4. Update a property -----
 // Write `setAge(user, newAge)` that sets user.age to newAge and RETURNS the same user.
 // your code here
-
+function setAge(user, newAge) {
+  return {
+    name,
+    newAge,
+  };
+}
+console.log("-------4-------");
+console.log((setAge({ name: "Sam", age: 20 }).age = 21));
+console.log(setAge({ name: "Sam", age: 20 }).name);
+console.log((setAge({ age: 5 }).age = 0));
 // console.log(setAge({ name: "Sam", age: 20 }, 21));
 // TEST 1:  setAge({ name: "Sam", age: 20 }, 21).age  ->  21
 // TEST 2:  setAge({ name: "Sam", age: 20 }, 21).name ->  "Sam"   (other keys untouched)
@@ -104,7 +143,14 @@
 // Use bracket set: obj[key] = value.
 // your code here
 
-// console.log(addField({ name: "Sam" }, "age", 20));
+function addField(obj, key, value) {
+  obj[key] = value;
+  return obj;
+}
+console.log("-------5-------");
+console.log(addField({ name: "Sam" }, "age", 20).age);
+console.log(addField({}, "x", 5).x);
+console.log(addField({ a: 1 }, "a", 9).a);
 // TEST 1:  addField({ name: "Sam" }, "age", 20).age   ->  20
 // TEST 2:  addField({}, "x", 5).x                      ->  5
 // TEST 3:  addField({ a: 1 }, "a", 9).a                ->  9     (existing key gets overwritten)
@@ -113,7 +159,15 @@
 // Write `removeField(obj, key)` that deletes that key from obj and RETURNS obj.
 // Hint: delete obj[key].
 // your code here
+function removeField(obj, key) {
+  delete obj[key];
+  return obj;
+}
+console.log("-------6-------");
 
+console.log("a" in removeField({ a: 1, b: 2 }, "a"));
+console.log("b" in removeField({ a: 1, b: 2 }, "a"));
+console.log(removeField({ a: 1, b: 2 }, "a").b);
 // console.log(removeField({ a: 1, b: 2 }, "a"));
 // TEST 1:  "a" in removeField({ a: 1, b: 2 }, "a")     ->  false
 // TEST 2:  "b" in removeField({ a: 1, b: 2 }, "a")     ->  true
@@ -123,95 +177,196 @@
 // Write `hasField(obj, key)` that RETURNS true if the key exists, false otherwise.
 // Hint: key in obj.  (Note: a key holding undefined still counts as existing — use `in`.)
 // your code here
-
+function hasField(obj, key) {
+  return key in obj;
+}
+console.log("-------7-------");
+console.log(hasField({ a: 1 }, "a"));
+console.log(hasField({ a: 1 }, "b"));
+console.log(hasField({ a: undefined }, "a"));
 // console.log(hasField({ a: 1 }, "a"));
 // TEST 1:  hasField({ a: 1 }, "a")        ->  true
 // TEST 2:  hasField({ a: 1 }, "b")        ->  false
 // TEST 3:  hasField({ a: undefined }, "a") ->  true
 
+// ----- 8. Increment a counter field -----
+// Write `incrementField(obj, key)` that adds 1 to obj[key] and RETURNS obj. If the key
+// is missing, treat it as 0 first (so it becomes 1).
+// Hint: obj[key] = (obj[key] || 0) + 1.
+// your code here
+function incrementField(obj, key) {
+  obj[key] = (obj[key] || 0) + 1;
+  return obj[key];
+}
+console.log("-------8-------");
+console.log(incrementField({ a: 1 }, "a"));
+console.log(incrementField({}, "new"));
+console.log(incrementField({ a: 0 }, "a"));
+// console.log(incrementField({ a: 1 }, "a"));
+// TEST 1:  incrementField({ a: 1 }, "a").a       ->  2
+// TEST 2:  incrementField({}, "new").new         ->  1     (missing key starts at 0)
+// TEST 3:  incrementField({ a: 0 }, "a").a       ->  1
+
 /* ============================================================
    PART C — NESTED, DEFAULTS, METHODS (`this`)
    ============================================================ */
 
-// ----- 8. Reach into a nested object -----
+// ----- 9. Reach into a nested object -----
 // Write `getCity(user)` that RETURNS user.address.city (an object inside an object).
 // your code here
+function getCity(user) {
+  return user.address.city;
+}
+console.log("-------9-------");
 
+console.log(getCity({ name: "Sam", address: { city: "Lagos" } }));
+console.log(getCity({ address: { city: "Paris" } }));
+console.log(getCity({ address: { city: "", zip: "0" } }));
 // console.log(getCity({ name: "Sam", address: { city: "Lagos", zip: "100001" } }));
 // TEST 1:  getCity({ name: "Sam", address: { city: "Lagos" } })  ->  "Lagos"
 // TEST 2:  getCity({ address: { city: "Paris" } })               ->  "Paris"
 // TEST 3:  getCity({ address: { city: "", zip: "0" } })          ->  ""
 
-// ----- 9. Value or fallback -----
+// ----- 10. Value or fallback -----
 // Write `valueOr(obj, key, fallback)` that RETURNS obj[key] if the key EXISTS, else fallback.
 // Hint: if (key in obj) return obj[key]; else return fallback.
 // your code here
-
+function valueOr(obj, key, fallback) {
+  if (key in obj) {
+    return obj[key];
+  } else {
+    fallback;
+  }
+}
+console.log("-------10-------");
+console.log(valueOr({ a: 1 }, "a", 0));
+console.log(valueOr({ a: 1 }, "b", 0));
+console.log(valueOr({ a: 0 }, "a", 99));
 // console.log(valueOr({ a: 1 }, "a", 0));
 // TEST 1:  valueOr({ a: 1 }, "a", 0)          ->  1
 // TEST 2:  valueOr({ a: 1 }, "b", 0)          ->  0
 // TEST 3:  valueOr({ a: 0 }, "a", 99)         ->  0     (key exists, so 0 wins over the fallback)
 
-// ----- 10. A counter object with a method (`this`) -----
+// ----- 11. A counter object with a method (`this`) -----
 // Write `makeCounter()` that RETURNS an object with count: 0 and a method inc()
 // that adds 1 to its OWN count and RETURNS the new count.
 // Hint: { count: 0, inc() { this.count++; return this.count; } }  — `this` is the object.
 // your code here
-
+function makeCounter() {
+  return {
+    count: 0,
+    inc: function () {
+      return (this.count = this.count + 1);
+    },
+  };
+}
+console.log("-------11-------");
+const c = makeCounter();
+console.log(c.count);
+const a = makeCounter();
+a.inc();
+a.inc();
+console.log(a.count);
+const b = makeCounter();
+b.inc();
+console.log(b.count);
 // const c = makeCounter(); console.log(c.inc());
 // TEST 1:  makeCounter().count        ->  0
 // TEST 2:  const a = makeCounter(); a.inc(); a.inc();  a.count   ->  2
 // TEST 3:  const b = makeCounter(); b.inc()                       ->  1
 
-// ----- 11. A rectangle that knows its own area -----
-// Write `makeRect(w, h)` that RETURNS { w, h, area() } where area() RETURNS w * h
-// using `this`. (Shorthand: { w, h } is the same as { w: w, h: h }.)
+// ----- 12. A bank account with deposit/withdraw -----
+// Write `makeBank(start)` that RETURNS an object with balance: start and two methods:
+// deposit(n) adds n to the balance, withdraw(n) subtracts n; both RETURN the new balance.
 // your code here
-
-// console.log(makeRect(3, 4).area());
-// TEST 1:  makeRect(3, 4).area()   ->  12
-// TEST 2:  makeRect(5, 1).w        ->  5
-// TEST 3:  makeRect(0, 9).area()   ->  0
+console.log("-------12-------");
+function makeBank(start) {
+  return {
+    balance: start,
+    deposit: function (n) {
+      this.balance = this.balance + n;
+      return this.balance;
+    },
+    withdraw: function (n) {
+      this.balance = this.balance - n;
+      return this.balance;
+    },
+  };
+}
+const acct = makeBank(100);
+console.log(acct.deposit(50));
+let x = makeBank(100);
+x.deposit(50);
+x.withdraw(30);
+console.log(x.balance);
+console.log(makeBank(0).balance);
+// const acct = makeBank(100); console.log(acct.deposit(50));
+// TEST 1:  makeBank(100).deposit(50)   ->  150
+// TEST 2:  const x = makeBank(100); x.deposit(50); x.withdraw(30); x.balance   ->  120
+// TEST 3:  makeBank(0).balance         ->  0
 
 /* ============================================================
    PART D — LOOP OVER AN OBJECT (for...in / Object.keys / values)
    ============================================================ */
 
-// ----- 12. Count the keys -----
+// ----- 13. Count the keys -----
 // Write `countKeys(obj)` that RETURNS how many keys the object has.
 // Hint: loop `for (const k in obj) count++`  OR  Object.keys(obj).length.
 // your code here
-
+function countKeys(obj) {
+  let count = 0;
+  for (const k in obj) {
+    count++;
+  }
+  return count;
+}
+console.log("-------12-------");
+console.log(countKeys({ a: 1, b: 2, c: 3 }));
+console.log(countKeys({}));
+console.log(countKeys({ x: 5 }));
 // console.log(countKeys({ a: 1, b: 2, c: 3 }));
 // TEST 1:  countKeys({ a: 1, b: 2, c: 3 })  ->  3
 // TEST 2:  countKeys({})                    ->  0
 // TEST 3:  countKeys({ x: 5 })              ->  1
 
-// ----- 13. Sum the values -----
+// ----- 14. Sum the values -----
 // Write `sumValues(obj)` that RETURNS the sum of all (numeric) values.
 // Hint: total = 0; for (const k in obj) total += obj[k].
 // your code here
-
+function sumValues(obj) {
+  let total = 0;
+  for (let k in obj) {
+    total = total + obj[k];
+  }
+  return total;
+}
+console.log("-------13-------");
+console.log(sumValues({ a: 1, b: 2, c: 3 }));
+console.log(sumValues({ x: 10 }));
+console.log(sumValues({}));
 // console.log(sumValues({ a: 1, b: 2, c: 3 }));
 // TEST 1:  sumValues({ a: 1, b: 2, c: 3 })  ->  6
 // TEST 2:  sumValues({ x: 10 })             ->  10
 // TEST 3:  sumValues({})                    ->  0
 
-// ----- 14. Join the keys -----
-// Write `joinKeys(obj)` that RETURNS the keys glued with ", " (comma + space), in order.
-// Hint: build a string; add ", " before every key except the first.
-// your code here
-
-// console.log(joinKeys({ a: 1, b: 2, c: 3 }));
-// TEST 1:  joinKeys({ a: 1, b: 2, c: 3 })       ->  "a, b, c"
-// TEST 2:  joinKeys({ name: 1, age: 1 })        ->  "name, age"
-// TEST 3:  joinKeys({ only: 1 })                ->  "only"
-
 // ----- 15. Biggest value -----
 // Write `maxValue(obj)` that RETURNS the largest value. Assume at least one key.
-// Hint: start `best` from the first value (or -Infinity), then compare each value.
+// Hint: start `best` from -Infinity, then compare each value.
 // your code here
+function maxValue(obj) {
+  let a = 0;
+  for (let k in obj) {
+    if (obj[k] > -Infinity) {
+      obj[k] = obj[k];
+    }
+  }
+  return obj;
+}
 
+console.log("-------14-------");
+console.log(maxValue({ a: 5, b: 9, c: 2 }));
+console.log(maxValue({ a: 5, b: 9, c: 2 }));
+console.log(maxValue({ a: 5, b: 9, c: 2 }));
 // console.log(maxValue({ a: 5, b: 9, c: 2 }));
 // TEST 1:  maxValue({ a: 5, b: 9, c: 2 })     ->  9
 // TEST 2:  maxValue({ x: 7 })                 ->  7
@@ -221,11 +376,75 @@
 // Write `keyOfMax(obj)` that RETURNS the KEY whose value is largest (first one if tied).
 // Hint: track both bestKey and bestVal as you loop.
 // your code here
-
+function keyOfMax(obj) {}
 // console.log(keyOfMax({ math: 80, art: 95, gym: 88 }));
 // TEST 1:  keyOfMax({ math: 80, art: 95, gym: 88 })  ->  "art"
 // TEST 2:  keyOfMax({ a: 5, b: 9, c: 2 })            ->  "b"
 // TEST 3:  keyOfMax({ only: 1 })                     ->  "only"
+
+// ----- 17. Average of the values -----
+// Write `averageValue(obj)` that RETURNS the mean of the values (sum divided by count).
+// Hint: total and count together in one loop, then total / count.
+// your code here
+function averageValue(obj) {
+  let length = 0;
+  let total = 0;
+  for (let k in obj) {
+    length = length + 1;
+    total = total + obj[k];
+  }
+  return total / length;
+}
+console.log(averageValue({ a: 2, b: 4, c: 6 }));
+console.log(averageValue({ x: 10 }));
+console.log(averageValue({ a: 1, b: 2 }));
+// console.log(averageValue({ a: 2, b: 4, c: 6 }));
+// TEST 1:  averageValue({ a: 2, b: 4, c: 6 })  ->  4
+// TEST 2:  averageValue({ x: 10 })             ->  10
+// TEST 3:  averageValue({ a: 1, b: 2 })        ->  1.5
+
+// ----- 18. Double every value (new object) -----
+// Write `doubleValues(obj)` that RETURNS a NEW object with the same keys but every
+// value times 2. The original must stay untouched.
+// Hint: out = {}; for (const k in obj) out[k] = obj[k] * 2.
+// your code here
+function doubleValues(obj) {
+  out = {};
+  for (const k in obj) {
+    out[k] = obj[k] * 2;
+  }
+  return out;
+}
+console.log(doubleValues({ a: 1, b: 2 }));
+console.log(doubleValues({ x: 0 }));
+console.log(doubleValues({}));
+// console.log(doubleValues({ a: 1, b: 2 }));
+// TEST 1:  doubleValues({ a: 1, b: 2 })  ->  { a: 2, b: 4 }
+// TEST 2:  doubleValues({ x: 0 })        ->  { x: 0 }
+// TEST 3:  doubleValues({})              ->  {}
+
+// ----- 19. Render key=value pairs -----
+// Write `toPairs(obj)` that RETURNS "key=value" for each pair, joined by ", ".
+// Hint: build a string; add ", " before every pair except the first.
+// your code here
+  function toPairs(obj)
+  {
+    let a = ""
+    for ( let k in obj )
+    { 
+      a = a + k+"="+ obj[k]+", "
+    }
+    return a;
+  }
+  
+  console.log(toPairs({ a: 1, b: 2}));
+  console.log(toPairs({ x : 5 }));
+  console.log(toPairs({ }));
+
+// console.log(toPairs({ a: 1, b: 2 }));
+// TEST 1:  toPairs({ a: 1, b: 2 })  ->  "a=1, b=2"
+// TEST 2:  toPairs({ x: 5 })        ->  "x=5"
+// TEST 3:  toPairs({})              ->  ""
 
 /* ============================================================
    PART E — OBJECT AS A MAP / COUNTER
@@ -233,7 +452,7 @@
    table you build as you go — the classic "frequency counter".
    ============================================================ */
 
-// ----- 17. Letter count -----
+// ----- 20. Letter count -----
 // Write `letterCount(word)` that RETURNS an object mapping each letter to how many
 // times it appears. Hint: counts = {}; for each char, if missing start at 0, then +1.
 //   if (counts[ch] === undefined) counts[ch] = 0;  counts[ch]++;
@@ -244,7 +463,7 @@
 // TEST 2:  letterCount("aaa")    ->  { a: 3 }
 // TEST 3:  letterCount("")       ->  {}     (empty word, empty object)
 
-// ----- 18. Length of each word -----
+// ----- 21. Length of each word -----
 // Write `wordLengths(sentence)` that RETURNS an object mapping each word to its length.
 // Hint: sentence.split(" ") gives the words; loop them, set obj[word] = word.length.
 // your code here
@@ -254,18 +473,7 @@
 // TEST 2:  wordLengths("hi there")     ->  { hi: 2, there: 5 }
 // TEST 3:  wordLengths("one")          ->  { one: 3 }
 
-// ----- 19. Merge two count objects (sum shared keys) -----
-// Write `mergeSums(a, b)` that RETURNS a NEW object: every key from both, and where a
-// key is in BOTH its values are added. Hint: copy a's keys in, then for b's keys
-// add onto whatever is already there (start from 0 if absent).
-// your code here
-
-// console.log(mergeSums({ a: 1, b: 2 }, { b: 3, c: 4 }));
-// TEST 1:  mergeSums({ a: 1, b: 2 }, { b: 3, c: 4 })  ->  { a: 1, b: 5, c: 4 }
-// TEST 2:  mergeSums({}, { x: 9 })                    ->  { x: 9 }
-// TEST 3:  mergeSums({ k: 2 }, {})                    ->  { k: 2 }
-
-// ----- 20. Flip keys and values -----
+// ----- 22. Flip keys and values -----
 // Write `invert(obj)` that RETURNS a new object where each value becomes a key and
 // each key becomes its value. Assume values are unique strings/numbers.
 // Hint: out = {}; for (const k in obj) out[obj[k]] = k.
@@ -277,46 +485,38 @@
 // TEST 3:  invert({})                   ->  {}
 
 /* ============================================================
-   PART F — COMPOSE: CALL ONE FUNCTION FROM ANOTHER
+   PART F — COPY (new object, original untouched)
    ============================================================ */
 
-// ----- 21. Cart total (reuse sumValues) -----
-// Write `cartTotal(cart)` where cart maps item -> price. RETURN the total by CALLING
-// your sumValues from exercise 13.
+// ----- 23. Shallow copy -----
+// Write `copyObject(obj)` that RETURNS a NEW object with the same keys and values.
+// Changing the copy must NOT change the original. Hint: { ...obj }.
 // your code here
 
-// console.log(cartTotal({ apple: 3, bread: 2, milk: 4 }));
-// TEST 1:  cartTotal({ apple: 3, bread: 2, milk: 4 })  ->  9
-// TEST 2:  cartTotal({ pen: 1 })                       ->  1
-// TEST 3:  cartTotal({})                               ->  0
+// console.log(copyObject({ a: 1, b: 2 }));
+// TEST 1:  copyObject({ a: 1, b: 2 }).a   ->  1
+// TEST 2:  const o = { a: 1 }; copyObject(o) === o   ->  false   (a NEW object, not the same one)
+// TEST 3:  copyObject({})                 ->  {}
 
-// ----- 22. Most expensive item (reuse keyOfMax) -----
-// Write `mostExpensive(prices)` that RETURNS the item name with the highest price by
-// CALLING your keyOfMax from exercise 16.
+// ----- 24. Omit a key WITHOUT mutating (reuse copyObject) -----
+// Write `omitField(obj, key)` that RETURNS a NEW object with that key removed, leaving
+// the original untouched. (Contrast removeField in ex 6, which mutates.)
+// Hint: copyObject first, then delete the key from the copy.
 // your code here
 
-// console.log(mostExpensive({ apple: 3, bread: 2, milk: 4 }));
-// TEST 1:  mostExpensive({ apple: 3, bread: 2, milk: 4 })  ->  "milk"
-// TEST 2:  mostExpensive({ a: 5, b: 9 })                   ->  "b"
-// TEST 3:  mostExpensive({ only: 1 })                      ->  "only"
-
-// ----- 23. Rename a key (reuse addField + removeField) -----
-// Write `renameField(obj, oldKey, newKey)` that moves the value from oldKey to newKey
-// and RETURNS obj. Read the value, addField it under newKey, removeField the oldKey.
-// your code here
-
-// console.log(renameField({ name: "Sam", age: 20 }, "name", "fullName"));
-// TEST 1:  renameField({ name: "Sam", age: 20 }, "name", "fullName").fullName  ->  "Sam"
-// TEST 2:  "name" in renameField({ name: "Sam", age: 20 }, "name", "fullName") ->  false
-// TEST 3:  renameField({ name: "Sam", age: 20 }, "name", "fullName").age       ->  20
+// console.log(omitField({ a: 1, b: 2 }, "a"));
+// TEST 1:  omitField({ a: 1, b: 2 }, "a")                  ->  { b: 2 }
+// TEST 2:  const o = { a: 1, b: 2 }; omitField(o, "a"); "a" in o   ->  true   (original kept)
+// TEST 3:  omitField({ a: 1 }, "a")                        ->  {}
 
 /* ============================================================
-   PART G — LEETCODE-STYLE (EASY)  (the object is your tool)
-   Same hash-map trick the real problems lean on: count things in
-   an object, then read the counts back. No fancy data structures.
+   PART G — CHALLENGE BLOCK (25–30)  (the object is your tool)
+   Same hash-map trick the real LeetCode problems lean on: count
+   things in an object, then read the counts back. The last two
+   COMPOSE earlier functions over nested data — the real test.
    ============================================================ */
 
-// ----- E1. First Unique Character  (LeetCode 387 lite) -----
+// ----- 25. First Unique Character  (LeetCode 387 lite) -----
 // Write `firstUniqueChar(word)` -> the FIRST character that appears exactly once.
 // If none, RETURN "". Hint: count every char into an object, then walk the word again
 // and return the first char whose count is 1.
@@ -327,7 +527,7 @@
 // EXAMPLE 2:  firstUniqueChar("swiss")     ->  "w"
 // EXAMPLE 3:  firstUniqueChar("aabb")      ->  ""    (every char repeats)
 
-// ----- E2. Valid Anagram  (LeetCode 242) -----
+// ----- 26. Valid Anagram  (LeetCode 242) -----
 // Write `areAnagrams(a, b)` -> true if b is a rearrangement of a (same letters, same
 // counts). Hint: if lengths differ -> false; count a into an object; walk b subtracting;
 // any count going negative or a missing key -> false.
@@ -338,65 +538,82 @@
 // EXAMPLE 2:  areAnagrams("hello", "world")    ->  false
 // EXAMPLE 3:  areAnagrams("a", "aa")           ->  false   (different lengths)
 
-// ----- E3. Most Frequent Character -----
-// Write `mostFrequentChar(word)` -> the character with the highest count (if tied, the
-// one whose count was reached first). Hint: build counts, then keyOfMax-style scan.
+// ----- 27. Can Form a Palindrome  (LeetCode 266 lite) -----
+// Write `canFormPalindrome(word)` -> true if the letters can be rearranged into a
+// palindrome. Rule: at most ONE letter may have an odd count. Hint: build counts,
+// then count how many counts are odd; ok if that total is 0 or 1.
 // your code here
 
-// console.log(mostFrequentChar("banana"));
-// EXAMPLE 1:  mostFrequentChar("banana")        ->  "a"   (a:3 beats n:2, b:1)
-// EXAMPLE 2:  mostFrequentChar("mississippi")   ->  "i"   (i:4, s:4 tie — i seen first)
-// EXAMPLE 3:  mostFrequentChar("abc")           ->  "a"   (all tie at 1 — first wins)
+// console.log(canFormPalindrome("aabb"));
+// EXAMPLE 1:  canFormPalindrome("aabb")     ->  true    (aabb -> "abba")
+// EXAMPLE 2:  canFormPalindrome("abc")      ->  false   (three odd counts)
+// EXAMPLE 3:  canFormPalindrome("racecar")  ->  true    (only e is odd)
 
-// ----- E4. Word Frequency -----
-// Write `countWords(sentence)` -> an object mapping each word to how many times it
-// appears. Hint: split on " ", then count each word like the letter counter.
+// ----- 28. Merge Keeping the Max -----
+// Write `mergeMax(a, b)` -> a NEW object with every key from both; when a key is in
+// BOTH, keep the LARGER value. Hint: copy a, then for each key in b use Math.max if the
+// key already exists, else just take b's value.
 // your code here
 
-// console.log(countWords("the cat the dog the"));
-// EXAMPLE 1:  countWords("the cat the dog the")  ->  { the: 3, cat: 1, dog: 1 }
-// EXAMPLE 2:  countWords("hi hi")                ->  { hi: 2 }
-// EXAMPLE 3:  countWords("one")                  ->  { one: 1 }
+// console.log(mergeMax({ a: 1, b: 5 }, { a: 3, b: 2, c: 9 }));
+// EXAMPLE 1:  mergeMax({ a: 1, b: 5 }, { a: 3, b: 2, c: 9 })  ->  { a: 3, b: 5, c: 9 }
+// EXAMPLE 2:  mergeMax({}, { x: 1 })                          ->  { x: 1 }
+// EXAMPLE 3:  mergeMax({ k: 4 }, { k: 2 })                    ->  { k: 4 }
 
-// ----- E5. Count Distinct Characters -----
-// Write `distinctChars(word)` -> how many DIFFERENT characters the word has.
-// Hint: count chars into an object, then the answer is Object.keys(counts).length.
+/* ------------------------------------------------------------
+   NESTED MINI-PROJECT (29–30): one BIG object, three levels deep.
+   THE RULE FOR DEEP DATA: build BOTTOM-UP. Write the small brick
+   first (studentAverage), then the next function CALLS it
+   (classAverage). Each layer trusts the layer below.
+
+   SCHOOL is real data below (NOT commented) so the tests run.
+   Do NOT edit it — your functions must work on it as-is.
+   ------------------------------------------------------------ */
+
+const SCHOOL = {
+  name: "Lagos High",
+  passMark: 70,
+  classes: {
+    jss1: {
+      teacher: "Mr. Ade",
+      students: {
+        ana: { math: 90, english: 80, science: 70 }, // average 80
+        ben: { math: 60, english: 50, science: 40 }, // average 50
+      },
+    },
+    jss2: {
+      teacher: "Ms. Bola",
+      students: {
+        cleo: { math: 100, english: 90, science: 80 }, // average 90
+        dare: { math: 60, english: 60, science: 60 }, // average 60
+      },
+    },
+  },
+};
+
+// ----- 29. One student's average (the bottom brick) -----
+// Write `studentAverage(scores)` where scores is a plain { subject: number } object.
+// RETURN the mean of the values. Everything in the next exercise calls this.
+// Hint: total + count in one for...in loop, then total / count (like ex 17).
 // your code here
 
-// console.log(distinctChars("hello"));
-// EXAMPLE 1:  distinctChars("hello")  ->  4    (h, e, l, o)
-// EXAMPLE 2:  distinctChars("aaa")    ->  1
-// EXAMPLE 3:  distinctChars("abc")    ->  3
+// console.log(studentAverage({ math: 90, english: 80, science: 70 }));
+// TEST 1:  studentAverage({ math: 90, english: 80, science: 70 })  ->  80
+// TEST 2:  studentAverage({ math: 60, english: 60, science: 60 })  ->  60
+// TEST 3:  studentAverage({ a: 1, b: 2 })                          ->  1.5
 
-// ----- E6. Digit Frequency (numbers meet objects) -----
-// Write `digitFrequency(n)` -> an object mapping each digit (as a key) to how many times
-// it appears in a non-negative integer. Hint: peel digits with % 10 and Math.floor(/10),
-// counting each into the object just like letters.
+// ----- 30. A class average (CALL studentAverage) -----
+// Write `classAverage(school, classId)` that RETURNS the mean of the students' averages
+// in that class. Loop the students with for...in, CALL studentAverage on each one's
+// scores, total them, divide by the count. This is the COMPOSE finale.
 // your code here
 
-// console.log(digitFrequency(1122333));
-// EXAMPLE 1:  digitFrequency(1122333)  ->  { "1": 2, "2": 2, "3": 3 }
-// EXAMPLE 2:  digitFrequency(112)      ->  { "1": 2, "2": 1 }
-// EXAMPLE 3:  digitFrequency(5)        ->  { "5": 1 }
-
-/* ============================================================
-   CHALLENGE (optional) — merge by hand
-   ============================================================ */
-
-// ----- Deep-ish merge of two records -----
-// Write `mergeRecords(a, b)` that RETURNS a new object with all keys of both; when a
-// key is in BOTH, b's value WINS (later object overrides). No nested objects to worry
-// about. You may use the spread { ...a, ...b } OR build it with two loops.
-// your code here
-
-// console.log(mergeRecords({ name: "Sam", age: 20 }, { age: 21, city: "Lagos" }));
-// TEST 1:  mergeRecords({ name: "Sam", age: 20 }, { age: 21 }).age   ->  21   (b wins)
-// TEST 2:  mergeRecords({ name: "Sam" }, { city: "Lagos" }).name     ->  "Sam"
-// TEST 3:  mergeRecords({ a: 1 }, { a: 2, b: 3 }).b                   ->  3
+// console.log(classAverage(SCHOOL, "jss1"));
+// TEST 1:  classAverage(SCHOOL, "jss1")  ->  65    (80 + 50, / 2)
+// TEST 2:  classAverage(SCHOOL, "jss2")  ->  75    (90 + 60, / 2)
+// TEST 3:  classAverage({ classes: { x: { students: { p: { a: 10 }, q: { a: 20 } } } } }, "x")  ->  15
 
 /* ============================================================
    All 3 tests match for an exercise = you got it right.
    Any mismatch = a bug to hunt. Happy object-ing!
    ============================================================ */
-
- 
